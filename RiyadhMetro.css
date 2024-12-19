@@ -1,0 +1,110 @@
+body {
+    margin: 0;padding: 0;
+    font-family: serif;font-weight: 300;
+    color: #333333;font-size: 40px;
+    background-color: #d9d9d9;
+}
+#head{
+    display: flex;height: 200px;
+    background-color: #333333;
+    justify-content: right; align-items: center;
+}
+.buttons{ 
+    font-family: serif;font-weight: 300;
+    color: #cccccc;font-size: 30px;
+    cursor: pointer;height: 110px;
+    background-color: transparent;
+    margin: 0.7%;border: 0px;display: flex;
+    align-items: center;padding-top: 50px;
+}
+.buttons:hover {
+    border-bottom: 5px solid #cccccc;
+}
+#Pic{
+    display: flex;height: 100px;
+    margin-left: 15%; margin-right: 2%;
+}
+.inf{
+    display: flex;padding-top: 100px;align-items: center;
+    height: 400px;justify-content: center;
+}
+#img{
+    height: inherit; margin: 10px; 
+}
+#txt{
+    width: 350px;  margin: 30px; 
+    justify-content: center;
+}
+#acc{
+    height: 70px;margin-right: 20%;
+}
+#acc:hover{border-bottom: 0px;}
+#Etiquette {
+    display: block;margin: 100px auto;
+    padding: 20px;width: 90%;
+    max-width: 1100px;text-align: center;
+    background: transparent;border-radius: 10px;
+    border: 2px solid #333333;
+}
+#tail{
+    display: flex;height: 400px;background-color: #333333;
+    padding-left: 7%;justify-content: right;
+}
+#t1{
+    height: 180px;width: 500px;
+    align-items: last baseline;display: flex;
+}
+#drb{height: 120px;}
+#t2{
+    display: flex;justify-content: right;
+    width: 425px;padding-top: 30px;
+}
+#sm{
+    margin-right: 15px;margin-left: 15px;height: 50px;
+}
+#first{
+    padding-left: 80px;width: 600px;
+}
+#second{
+    width: 600px;padding-left: 80px;display: flex;
+}
+.buttons2{ 
+    display: flex;
+    font-family: serif;font-weight: 300;
+    color: #d9d9d9;font-size: 30px;
+    cursor: pointer;height: 50px;margin: 3%;border: 0px;
+    background-color: transparent;
+    align-items: center;padding-top: 50px;
+}
+#t3{
+    width: 280px; padding-top: 50px;
+}
+#third{
+    display: block;justify-items: center;
+    width: 600px;color: #d9d9d9;padding-top: 43px;
+}
+#pi{
+    height: 50px;margin-left: 20px;
+}
+#myBtn {
+    border: 2px solid #d9d9d9;
+    background-color: transparent;
+    color: #d9d9d9;
+    cursor: pointer;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-right: 500px;
+}
+  
+#myBtn:hover {
+    background-color: #d9d9d9;
+    color: #333333;
+}
+
+
+
+
