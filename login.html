@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="login.css"> 
+    <title>Log in</title>
+    <link rel="icon" href="Pics/1..png">
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up">
+                <form>
+                <h1>Create an account </h1>
+                <input type="text" placeholder="username">
+                <input type="email" placeholder="email">
+                <input type="password" placeholder="passowrd">
+                <button type="submit">Sign up</button>
+                </form>
+            </div>
+
+            <div class="form-container sign-in">
+                <form>
+                    
+                <h1>
+                    <img src="Pics/1..png" >
+                   
+                    Log in
+                </h1>
+                <input type="email" placeholder="email">
+                <input type="password" placeholder="passowrd">
+                <a href="" >forgot your  password?</a>
+                <button type="submit">Log in</button> 
+            </form>
+            </div>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Log in</h1>
+                        <p>Already have an account?</p>
+                        <button class="hidden" id="log-in">Log in</button>
+
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>Join us</h1>
+                        <p>New? create an account</p>
+                        <button class="hidden" id="register">sing up</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+           
+         document.getElementById("log-in").addEventListener("click",()=>{
+            document.getElementById("container").classList.remove("active")
+         })
+         document.getElementById("register").addEventListener("click",()=>{
+            document.getElementById("container").classList.add("active")
+         })
+        </script>
+    
+       
+   
+    </body>
+</html>
