@@ -134,7 +134,7 @@ a{
     color: #21a953;
 }
 .price:hover .hover-img {
-    content: url('Pics/ticket2.png');
+    content: url('ticket2.png');
 }
 .hover-img {
     transition: all 0.3s ease;height: 80px;
