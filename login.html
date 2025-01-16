@@ -1,64 +1,473 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <link rel="stylesheet" href="login.css"> 
-    <title>Log in</title>
+<head>
+    <title>Login</title>
     <link rel="icon" href="Pics/1..png">
-    </head>
-    <body>
-        <div class="container" id="container">
-            <div class="form-container sign-up">
-                <form>
-                <h1>Create an account </h1>
-                <input type="text" placeholder="username">
-                <input type="email" placeholder="email">
-                <input type="password" placeholder="passowrd">
-                <button type="submit">Sign up</button>
-                </form>
-            </div>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            background: linear-gradient(to right, #e2e2e2, #21a953);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-            <div class="form-container sign-in">
-                <form>
-                    
-                <h1>
-                    <img src="Pics/1..png" >
-                   
-                    Log in
-                </h1>
-                <input type="email" placeholder="email">
-                <input type="password" placeholder="passowrd">
-                <a href="" >forgot your  password?</a>
-                <button type="submit">Log in</button> 
+        .container {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            width: 800px;
+            max-height: 100%;
+            min-height: 500px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .container p {
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0;
+        }
+
+        .container span {
+            font-size: 12px;
+        }
+
+        .container a {
+            color: #333;
+            font-size: 13px;
+            text-decoration: none;
+            margin: 15px 0 10px;
+        }
+
+        .container button {
+            background-color: #21a953;
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 50px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container button.hidden {
+            background-color: transparent;
+            color: #d3e6da;
+            border: 1px solid #d3e6da;
+        }
+
+        .container button:hover {
+            background-color: #188740;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container form {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 60px;
+            height: 100%;
+        }
+
+        .container form h1 {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .container input {
+            background-color: #e9efe9;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 12px 20px;
+            font-size: 14px;
+            width: 50%;
+            outline: none;
+            transition: border 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .container input:focus {
+            border-color: #21a953;
+            box-shadow: 0 0 8px rgba(33, 169, 83, 0.5);
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .sign-in {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .container.active .sign-in {
+            transform: translateX(100%);
+        }
+
+        .sign-up {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .container.active .sign-up {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: move 0.6s;
+        }
+
+        @keyframes move {
+            0%, 49.99% {
+                opacity: 1;
+                z-index: 0;
+            }
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.6s ease-in-out;
+            border-radius: 150px 0 0 100px;
+        }
+
+        .container.active .toggle-container {
+            transform: translateX(-100%);
+            border-radius: 0 150px 100px 0;
+        }
+
+        .toggle {
+            background-color: #21a953;
+            height: 100%;
+            background: linear-gradient(to right, #188740, #21a953);
+            color: #fff;
+            position: relative;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .container.active .toggle {
+            transform: translateX(50%);
+        }
+
+        .toggle-panel {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            margin: 150px 0;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            flex-direction: column;
+            padding: 0 30px;
+            text-align: center;
+            top: 0;
+            transform: translateX(0);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .toggle-left {
+            transform: translateX(-200%);
+            padding-left: 30px;
+        }
+
+        .container.active .toggle-left {
+            transform: translateX(0);
+        }
+
+        .toggle-right {
+            right: 0;
+            transform: translateX(0);
+            padding-left: 30px;
+        }
+
+        .container.active .toggle-right {
+            transform: translateX(200%);
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2px;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .image-container img {
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .modal-content input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            background-color: #21a953;
+            color: #fff;
+            font-size: 14px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #188740;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .password-container {
+            position: relative;
+            width: 62%;
+        }
+
+        .password-container input {
+            width: 90%;
+            padding: 11px 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            background-color: #e9efe9;
+            margin-left: -0.5%;
+            padding-right: 0;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #262323;
+        }
+
+        .eye-icon.active {
+            color: #21a953;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .home-button {
+            background-color: #21a953;
+            color: #fff;
+            font-size: 14px;
+            padding: 12px 50px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            background-color: #188740;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <div class="image-container">
+                    <img src="Pics/1..png"  id="dynamic-image">
+                    <img src="Pics/unii.png" id="dynamic-image">
+                </div>
+                <h1>Create an account</h1>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <div class="password-container">
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <span id="toggle-signup-password" class="eye-icon">&#128065;</span>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Sign up</button>
+                    <button class="home-button" onclick="window.location.href='home.html'">Home</button>
+                </div>
             </form>
-            </div>
-            <div class="toggle-container">
-                <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                        <h1>Log in</h1>
-                        <p>Already have an account?</p>
-                        <button class="hidden" id="log-in">Log in</button>
+        </div>
 
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                        <h1>Join us</h1>
-                        <p>New? create an account</p>
-                        <button class="hidden" id="register">sing up</button>
+        <div class="form-container sign-in">
+            <form>
+                <div class="image-container">
+                    <img src="Pics/1..png"  id="dynamic-image">
+                    <img src="Pics/unii.png" id="dynamic-image">
+                </div>
+                <h1>Log in</h1>
+                <input type="email" placeholder="Email" required>
+                <div class="password-container">
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <span id="toggle-login-password" class="eye-icon">&#128065;</span>
+                </div>
+                <a href="#" id="forgot-password">Forgot your password?</a>
+                <div class="button-container">
+                    <button type="submit">Log in</button>
+                    <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+                </div>
+            </form>
+        </div>
 
-                    </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Log in</h1>
+                    <p>Already have an account?</p>
+                    <button class="hidden" id="log-in">Log in</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Join us</h1>
+                    <p>New? Create an account</p>
+                    <button class="hidden" id="register">Sign up</button>
                 </div>
             </div>
         </div>
-        <script>
-           
-         document.getElementById("log-in").addEventListener("click",()=>{
-            document.getElementById("container").classList.remove("active")
-         })
-         document.getElementById("register").addEventListener("click",()=>{
-            document.getElementById("container").classList.add("active")
-         })
-        </script>
-    
-       
-   
-    </body>
+
+        <div id="reset-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Reset Password</h2>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Send Reset Link</button>
+                    <button type="button" class="home-button" onclick="window.location.href='home.html'">Home</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("forgot-password").addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById("reset-modal").style.display = "block";
+        });
+
+        document.querySelector(".close-btn").addEventListener("click", () => {
+            document.getElementById("reset-modal").style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === document.getElementById("reset-modal")) {
+                document.getElementById("reset-modal").style.display = "none";
+            }
+        });
+
+        document.getElementById("log-in").addEventListener("click", () => {
+            document.getElementById("container").classList.remove("active");
+        });
+
+        document.getElementById("register").addEventListener("click", () => {
+            document.getElementById("container").classList.add("active");
+        });
+
+        function togglePasswordVisibility(passwordFieldId, eyeIconId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const eyeIcon = document.getElementById(eyeIconId);
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+            eyeIcon.classList.toggle("active", type === "text");
+        }
+
+        document.getElementById("toggle-login-password").addEventListener("click", () => {
+            togglePasswordVisibility("login-password", "toggle-login-password");
+        });
+
+        document.getElementById("toggle-signup-password").addEventListener("click", () => {
+            togglePasswordVisibility("signup-password", "toggle-signup-password");
+        });
+    </script>
+</body>
 </html>
