@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Line - Riyadh Metro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: #f0f6ff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .header p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .header .direction-arrow {
+            font-size: 1.5rem;
+            color: white;
+            margin: 10px 0;
+        }
+
+        .timer {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 1rem;
+        }
+
+        .timer.open {
+            color: #4CAF50;
+            border-right: 4px solid #4CAF50;
+        }
+
+        .timer.closed {
+            color: #f44336;
+            border-right: 4px solid #f44336;
+        }
+
+        .stats {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .station {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .station:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .station-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #d32f2f;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+        }
+
+        .station-info {
+            padding: 15px 0;
+            display: none;
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+        }
+
+        .station-info.active {
+            display: block;
+        }
+
+        .next-train {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .map-btn {
+            background: #f5f5f5;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .map-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .info-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+
+        .info-btn:hover {
+            background: #b71c1c;
+        }
+
+        .close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            display: none;
+            font-size: 1rem;
+        }
+
+        .close-btn.visible {
+            display: inline-block;
+        }
+
+        #head {
+            display: flex;
+            height: auto;
+            background-color: #333333;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+        }
+
+        #head .buttons {
+            font-family: serif;
+            font-weight: 300;
+            color: #cccccc;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        #head .buttons:hover {
+            border-bottom: 5px solid #cccccc;
+        }
+
+        #Pic {
+            display: flex;
+            height: 80px;
+            align-items: center;
+        }
+
+        #Pic img {
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        #tail {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #333333;
+            padding: 20px 5%;
+            justify-content: space-between;
+        }
+
+        #third {
+            width: 100%;
+            max-width: 300px;
+            color: #d9d9d9;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #third p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        #third img {
+            height: 50px;
+            margin: 0 10px;
+        }
+
+        #second {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 400px;
+            justify-content: space-between;
+        }
+
+        #second .buttons2 {
+            font-family: serif;
+            font-weight: 300;
+            color: #d9d9d9;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: 0px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        #first {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        #t1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        #drb {
+            height: 80px;
+        }
+
+        #t2 {
+            display: flex;
+            justify-content: center;
+        }
+
+        #sm {
+            height: 40px;
+            margin: 0 10px;
+        }
+
+        #myBtn {
+            border: 2px solid #d9d9d9;
+            background-color: transparent;
+            color: #d9d9d9;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        #myBtn:hover {
+            background-color: #d9d9d9;
+            color: #333333;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333333;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #cccccc;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #444444;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            #head .buttons {
+                font-size: 1rem;
+                padding: 5px;
+            }
+
+            #Pic {
+                height: 60px;
+            }
+
+            #third p {
+                font-size: 1rem;
+            }
+
+            #third img {
+                height: 40px;
+            }
+
+            #second .buttons2 {
+                font-size: 1rem;
+            }
+
+            #drb {
+                height: 60px;
+            }
+
+            #sm {
+                height: 30px;
+            }
+
+            #myBtn {
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+            }
+
+            #head .buttons {
+                font-size: 0.9rem;
+            }
+
+            #Pic {
+                height: 50px;
+            }
+
+            #third p {
+                font-size: 0.9rem;
+            }
+
+            #third img {
+                height: 30px;
+            }
+
+            #second .buttons2 {
+                font-size: 0.9rem;
+            }
+
+            #drb {
+                height: 50px;
+            }
+
+            #sm {
+                height: 25px;
+            }
+
+            #myBtn {
+                font-size: 0.9rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="head">
+        <a href="home.html"><button class="buttons">Home</button></a>
+        <a href="tickets.html"><button class="buttons">Tickets</button></a>
+        <a href="line.html"><button class="buttons"> Lines</button></a>
+
+        <div class="dropdown">
+            <button class="buttons">Other Lines</button>
+            <div class="dropdown-content">
+                <a href="blue.html">Blue Line</a>
+                <a href="green.html">Green Line</a>
+                <a href="yellow.html">Yellow Line</a>
+                <a href="purple.html">Purple Line</a>
+                <a href="orange.html">Orange Line</a>
+            </div>
+        </div>
+        <button class="buttons">Paths</button>
+        <button class="buttons">About</button>
+        <button class="buttons">Contact</button>
+        <div id="Pic">
+            <img src="Pics/drb.png">
+            <img src="Pics/unii.png">
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Red Line</h1>
+            <p>Line starts at: King Saud University <span class="direction-arrow"><i class="fas fa-arrows-alt-h"></i></span> Line ends at: King Fahd Sports City</p>
+            <p>15 Stations</p>
+        </div>
+
+        <div id="timer" class="timer"></div>
+        <div id="stats" class="stats">
+            <p>Total trains expected today: <span id="totalTrains">0</span></p>
+            <p>Trains that have arrived: <span id="arrivedTrains">0</span></p>
+        </div>
+        <div id="stations"></div>
+    </div>
+
+    <div id="tail">
+        <div id="third">
+            <p>Download darb app now!</p>
+            <div>
+                <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
+            </div>
+            <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
+        </div>
+
+        <div id="second">
+            <div id="t3">
+                <button class="buttons2">Metro lines</button>
+                <button class="buttons2">Plan your journy</button>
+                <button class="buttons2">Buy a ticket</button>
+            </div>
+
+            <div id="t3">
+                <button class="buttons2">About the metro</button>
+                <button class="buttons2">Contact us</button>
+            </div>
+        </div>
+
+        <div id="first">
+            <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+            <div id="t2">
+                <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w/community?pvf=CAI%253D"><img src="Pics/youtube.png" id="sm"></a>
+                <a href="https://www.linkedin.com/company/riyadhtransport/"><img src="Pics/linkedin.png" id="sm"></a>
+                <a href="https://www.facebook.com/riyadhtransport"><img src="Pics/facebook.png" id="sm"></a>
+                <a href="https://www.instagram.com/riyadhtransport/"><img src="Pics/instagram.png" id="sm"></a>
+                <a href="https://x.com/RiyadhTransport"><img src="Pics/twitter.png" id="sm"></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stations = [
+            "King Saud University", "Station 2", "Station 3", "Station 4", "STC",
+            "Station 6", "Station 7", "Ministry of Education", "Station 9", "Station 10",
+            "Station 11", "Al Hamra", "Station 13", "Station 14", "King Fahd Sports City"
+        ];
+        const stopDuration = 90 * 1000;
+        const waitDuration = 5 * 60 * 1000;
+        const cycleDuration = stopDuration + waitDuration;
+        const startHour = 6;
+        const endHour = 24;
+        let nextTrainTime;
+        let totalTrains = 0;
+        let arrivedTrains = 0;
+        let isStationOpen = true;
+
+        let activeStates = new Array(stations.length).fill(false);
+
+        function initializeTrainSchedule() {
+            const now = new Date();
+            const startTime = new Date();
+            startTime.setHours(startHour, 0, 0, 0);
+
+            if (now < startTime) {
+                nextTrainTime = startTime;
+            } else {
+                const trainsSinceStart = Math.floor((now - startTime) / cycleDuration);
+                nextTrainTime = new Date(startTime.getTime() + (trainsSinceStart + 1) * cycleDuration);
+                arrivedTrains = trainsSinceStart;
+            }
+
+            const operatingTime = (endHour - startHour) * 60 * 60 * 1000;
+            totalTrains = Math.floor(operatingTime / cycleDuration);
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const second = now.getSeconds();
+
+            const timer = document.getElementById('timer');
+
+            if (hour >= startHour && hour < endHour) {
+                const remaining = `${23 - hour}:${59 - minute}:${59 - second}`;
+                timer.innerHTML = `<i class="fas fa-clock"></i> Closes in ${remaining}`;
+                timer.className = 'timer open';
+            } else {
+                const until = hour < startHour ? 
+                    `${startHour - hour - 1}:${59 - minute}:${59 - second}` : 
+                    `${24 - hour + startHour - 1}:${59 - minute}:${59 - second}`;
+                timer.innerHTML = `<i class="fas fa-clock"></i> The station is closed. Opens in ${until}`;
+                timer.className = 'timer closed';
+            }
+        }
+
+        function updateArrivedTrains() {
+            const now = new Date();
+            const startTime = new Date();
+            startTime.setHours(startHour, 0, 0, 0);
+
+            if (now >= startTime) {
+                const trainsSinceStart = Math.floor((now - startTime) / cycleDuration);
+                arrivedTrains = trainsSinceStart;
+            }
+        }
+
+        function createStationElement(index) {
+            const stationNumber = index + 1;
+            const station = stations[index];
+
+            const div = document.createElement('div');
+            div.id = `station-${index}`;
+            div.className = 'station';
+
+            div.innerHTML = `
+                <div>
+                    <span class="station-number">${stationNumber}</span>
+                    ${station}
+                    <button class="info-btn" onclick="openInfo(${index}, event)">
+                        <i class="fas fa-info-circle"></i> Open Info
+                    </button>
+                    <button class="close-btn" onclick="closeInfo(${index}, event)" style="display: none;">
+                        <i class="fas fa-times-circle"></i> Close Info
+                    </button>
+                </div>
+                <div class="station-info" id="info-${index}">
+                    <div class="next-train" id="next-train-${index}">
+                    </div>
+                    <button class="map-btn">
+                        <i class="fas fa-map-marker-alt"></i>
+                        View Location
+                    </button>
+                </div>
+            `;
+
+            return div;
+        }
+
+        function updateTrainTimes() {
+            updateArrivedTrains();
+            const now = new Date();
+            const stationsContainer = document.getElementById('stations');
+
+            stations.forEach((station, index) => {
+                let div = document.getElementById(`station-${index}`);
+                if (!div) {
+                    div = createStationElement(index);
+                    stationsContainer.appendChild(div);
+                }
+
+                const nextTrainElement = document.getElementById(`next-train-${index}`);
+                if (!isStationOpen) {
+                    nextTrainElement.innerHTML = `<i class="fas fa-train"></i> The station is manually closed.`;
+                } else if (now.getHours() < startHour || now.getHours() >= endHour) {
+                    nextTrainElement.innerHTML = `<i class="fas fa-train"></i> The station is closed. Opens at ${startHour}:00 AM.`;
+                } else {
+                    const startTime = new Date();
+                    startTime.setHours(startHour, 0, 0, 0);
+                    const timeElapsed = now - startTime;
+                    const currentCycle = timeElapsed % cycleDuration;
+
+                    if (currentCycle < stopDuration) {
+                        const remainingStopTime = Math.floor((stopDuration - currentCycle) / 1000);
+                        nextTrainElement.innerHTML = `<i class="fas fa-train"></i> The train has arrived. Departs in ${remainingStopTime} seconds.`;
+                    } else {
+                        const remainingWaitTime = Math.floor((cycleDuration - currentCycle) / 1000);
+                        nextTrainElement.innerHTML = `<i class="fas fa-train"></i> The next train arrives in ${Math.floor(remainingWaitTime / 60)} minutes and ${remainingWaitTime % 60} seconds.`;
+                    }
+                }
+
+                const info = document.getElementById(`info-${index}`);
+                if (activeStates[index]) {
+                    info.classList.add('active');
+                    document.querySelector(`#station-${index} .info-btn`).style.display = 'none';
+                    document.querySelector(`#station-${index} .close-btn`).style.display = 'inline-block';
+                } else {
+                    info.classList.remove('active');
+                    document.querySelector(`#station-${index} .info-btn`).style.display = 'inline-block';
+                    document.querySelector(`#station-${index} .close-btn`).style.display = 'none';
+                }
+            });
+
+            displayTrainStats();
+        }
+
+        function displayTrainStats() {
+            document.getElementById('totalTrains').textContent = totalTrains;
+            document.getElementById('arrivedTrains').textContent = arrivedTrains;
+        }
+
+        function openInfo(index, event) {
+            event.preventDefault();
+            activeStates[index] = true;
+            updateTrainTimes();
+        }
+
+        function closeInfo(index, event) {
+            event.preventDefault();
+            activeStates[index] = false;
+            updateTrainTimes();
+        }
+
+        initializeTrainSchedule();
+        updateTimer();
+        updateTrainTimes();
+
+        setInterval(updateTimer, 1000);
+        setInterval(updateTrainTimes, 1000);
+
+        let mybutton = document.getElementById("myBtn");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>

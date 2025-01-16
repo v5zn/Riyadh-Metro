@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <script src="RiyadhMetro.js"></script>
+    <link rel="icon" href="Pics/1..png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: serif;
+            font-weight: 300;
+            color: #072211;
+            font-size: 40px;
+            background-color: #e9f6ee;
+        }
+
+        #head {
+            display: flex;
+            height: 140px;
+            background-color: #21a953;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .buttons {
+            font-family: serif;
+            font-weight: 300;
+            color: #031108;
+            font-size: 30px;
+            cursor: pointer;
+            height: 110px;
+            background-color: transparent;
+            margin: 0.7%;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .buttons:hover {
+            border-bottom: 5px solid #031108;
+        }
+
+        #Pic {
+            display: flex;
+            height: 100px;
+            margin-left: 15%;
+            margin-right: 2%;
+        }
+
+        #main {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 36px; 
+            color: #21a953;
+            margin-bottom: 25px; 
+            font-weight: bold; 
+        }
+
+        .section p {
+            font-size: 20px; 
+            line-height: 1.8; 
+            color: #072211; 
+            margin-bottom: 40px; 
+            font-family: 'Arial', sans-serif; 
+            text-align: justify; 
+            padding: 0 20px;
+            max-width: 1000px; 
+            margin: 0 auto; 
+            hyphens: auto; 
+        }
+
+        #tail {
+            display: flex;
+            height: auto;
+            width: auto;
+            background-color: #031108;
+            padding-left: 7%;
+            justify-content: right;
+        }
+
+        #t1 {
+            height: 180px;
+            width: 500px;
+            align-items: last baseline;
+            display: flex;
+        }
+
+        #drb {
+            height: 120px;
+        }
+
+        #t2 {
+            display: flex;
+            justify-content: right;
+            width: 425px;
+            padding-top: 30px;
+        }
+
+        #sm {
+            margin-right: 15px;
+            margin-left: 15px;
+            height: 50px;
+        }
+
+        #first {
+            padding-left: 80px;
+            width: 600px;
+        }
+
+        #second {
+            width: 600px;
+            padding-left: 80px;
+            display: flex;
+        }
+
+        .buttons2 {
+            display: flex;
+            font-family: serif;
+            font-weight: 300;
+            color: #e9f6ee;
+            font-size: 30px;
+            cursor: pointer;
+            height: 50px;
+            margin: 3%;
+            border: 0px;
+            background-color: transparent;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        #t3 {
+            width: 280px;
+            padding-top: 50px;
+        }
+
+        #third {
+            display: block;
+            justify-items: center;
+            width: 600px;
+            color: #e9f6ee;
+            padding-top: 43px;
+        }
+
+        #pi {
+            height: 50px;
+            margin-left: 20px;
+        }
+
+        #myBtn {
+            border: 2px solid #e9f6ee;
+            background-color: transparent;
+            color: #e9f6ee;
+            cursor: pointer;
+            padding: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 10px;
+            font-size: 30px;
+            margin-top: 50px;
+            margin-right: 500px;
+        }
+
+        #myBtn:hover {
+            background-color: #e9f6ee;
+            color: #031108;
+        }
+    </style>
+</head>
+<body>
+    <div id="head">
+        <button class="buttons" id="acc"><img src="Pics/acc.png" id="acc"></button>
+        <button class="buttons">Tickets</button>
+        <button class="buttons">Lines</button>
+        <button class="buttons">Paths</button>
+        <button class="buttons">About</button>
+        <button class="buttons">Contact</button>
+        <div id="Pic">
+            <a href="index.html">
+                <img src="Pics/drb.png"style="height: 100px;">
+            </a>            <img src="Pics/unii.png">
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="section">
+            <h2>Contact </h2>
+            <p>For inquiries or assistance, please contact us via:</p>
+            <p><strong>Contact us:
+
+                Dial 19933
+                
+                </strong></p>
+            <p><strong>Email us
+
+                <a href="mailto:customercare@riyadhbus.sa">customercare@riyadhbus.sa</a></strong> </p>
+        </div>
+    </div>
+
+    <div id="tail">
+        <div id="third">
+            <p>Download darb app now!</p>
+            <div>
+                <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
+            </div>
+            <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
+        </div>
+
+        <div id="second">
+            <div id="t3">
+                <button class="buttons2">Metro lines</button>
+                <button class="buttons2">Plan your journy</button>
+                <button class="buttons2">Buy a ticket</button>
+            </div>
+
+            <div id="t3">
+                <button class="buttons2">About the metro</button>
+                <button class="buttons2">Contact us</button>
+            </div>
+        </div>
+
+        <div id="first">
+            <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+            <div id="t2">
+                <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w/community?pvf=CAI%253D"><img src="Pics/youtube.png" id="sm"></a>
+                <a href="https://www.linkedin.com/company/riyadhtransport/"><img src="Pics/linkedin.png" id="sm"></a>
+                <a href="https://www.facebook.com/riyadhtransport"><img src="Pics/facebook.png" id="sm"></a>
+                <a href="https://www.instagram.com/riyadhtransport/"><img src="Pics/instagram.png" id="sm"></a>
+                <a href="https://x.com/RiyadhTransport"><img src="Pics/twitter.png" id="sm"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

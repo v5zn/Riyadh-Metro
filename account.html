@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Riyadh Metro - My account</title>
+        <link rel="icon" href="Pics/drb1.png">
+        <link rel="stylesheet" href="RiyadhMetro.css">
+        <script src="RiyadhMetro.js"></script>
+        <base target="_blank">
+    </head>
+    
+    <body>
+        <div id="head">
+            
+            <button class="buttons" id="acc"><a href="account.html"><img src="Pics/user.png" id="acc"></a></button>
+            <a href="tickets.html">
+                <button class="buttons" id="Tickets">Tickets</button></a>
+            <a href="Lines.html">
+                <button class="buttons">Lines</button></a>
+            <button class="buttons">Paths</button>
+            <button class="buttons">About</button>
+            <button class="buttons">Contact</button>
+            
+            <div id="Pic">
+                <a href="index.html" target="_blank">
+                    <img src="Pics/drb.png" style="height: 100px">
+                </a>
+                <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; padding: 20px;">
+                <img src="Pics/about-banner.jpg" style="border-radius: 20px;">
+                <p style="position: absolute; top: 53%; left: 21%; transform: translate(-50%, -50%); margin: 0; color: white; font-size: 50px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Personal Information</p>
+            </div>
+            <form action="" method="POST">    
+                <div style="margin: 10px;" class="info-row" >
+                    <label for="full-name">Full Name</label>
+                    <input style="font-size: 20px" type="text" id="full-name" value="" placeholder="Mohamed" required>
+                    <br>
+                    <label for="phone">Phone Number</label>
+                    <input style="font-size: 20px" type="tel" id="phone" placeholder="0541234567" pattern="[0]{1}[5]{1}[0-9]{8}" value="" required>
+                    <br>
+                    <label for="bday">Birth Date</label>
+                    <input style="font-size: 20px" type="date" id="bday" value="" required>
+                    <br>
+                    <label for="email">Email Address</label>
+                    <input style="font-size: 20px" type="email" id="email" placeholder="mo123@example.com" value="" required>
+                    <br>
+                    <label for="password">Password</label>
+                    <input style="font-size: 20px" type="password" id="paswword" minlength="8" value="" placeholder="Mohamed12345" required>
+                    <br>
+                    
+                </div>
+                <button type="submit" style="font-size: 17px; font-weight: 560; margin: 10px; border-radius: 10px; background-color: #21a953; color: #fff; padding: 8px 15px;">Update Information</button>
+            </form>
+            <a href="https://riyadhmetro.site/login.html"><button style="font-size: 17px; font-weight: 560; margin: 10px; border-radius: 10px; background-color: #ee1b14; color: #fff; padding: 8px 15px;">Logout</button></a>
+
+            
+       
+        <footer>
+            <div id="tail">
+                <div id="third">
+                    <p>Download Darb App Now!</p>
+                    <div>
+                        <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
+                    </div>
+                    <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
+                </div>
+
+                <div id="second">
+                    <div id="t3">
+                        <button class="buttons2">Metro Lines</button>
+                        <button class="buttons2">Plan Your Journey</button>
+                        <button class="buttons2">Buy a Ticket</button>
+                    </div>
+
+                    <div id="t3">
+                        <button class="buttons2">About The Metro</button>
+                        <button class="buttons2">Contact Us</button>
+                    </div>
+                </div>
+
+                <div id="first">
+                    <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+                    <div id="t2">
+                        <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w/community?pvf=CAI%253D"><img src="Pics/youtube.png" id="sm"></a>
+                        <a href="https://www.linkedin.com/company/riyadhtransport/"><img src="Pics/linkedin.png" id="sm"></a>
+                        <a href="https://www.facebook.com/riyadhtransport"><img src="Pics/facebook.png" id="sm"></a>
+                        <a href="https://www.instagram.com/riyadhtransport/"><img src="Pics/instagram.png" id="sm"></a>
+                        <a href="https://x.com/RiyadhTransport"><img src="Pics/twitter.png" id="sm"></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
