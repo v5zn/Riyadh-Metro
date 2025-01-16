@@ -22,7 +22,7 @@ body {
 }
 #Pic{
     display: flex;height: 100px;
-    margin-left: 15%; margin-right: 2%;
+    margin-left: 6%; margin-right: 2%;
 }
 .inf{
     display: flex;padding-top: 100px;align-items: center;
@@ -36,7 +36,7 @@ body {
     justify-content: center;
 }
 #acc{
-    height: 70px;margin-right: 20%;
+    height: 70px; margin-right: 10%;
 }
 #acc:hover{border-bottom: 0px;}
 #Etiquette {
@@ -49,6 +49,7 @@ body {
 #tail{
     display: flex;height: 400px;background-color: #031108;
     padding-left: 7%;justify-content: right;
+    width:inherit;align-items: center;
 }
 #t1{
     height: 180px;width: 500px;
@@ -134,7 +135,7 @@ a{
     color: #21a953;
 }
 .price:hover .hover-img {
-    content: url('ticket2.png');
+    content: url('Pics/ticket2.png');
 }
 .hover-img {
     transition: all 0.3s ease;height: 80px;
@@ -144,9 +145,128 @@ a{
     color: white;border: 2px solid #21a953;
     padding: 20px;cursor: pointer;
 }
-#df{
-    border: 2px solid#21a953;
-    height: 200px;
+#a{
+    margin: 20px;
+}
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+.buttons, .buttons2, .btn {
+    min-width: 100px; /* Ensure buttons are large enough to tap */
+    padding: 15px; /* Increase padding for better touch targets */
+}
+#Pic img {
+    height: 100px; /* Adjust this value as needed */
+    width: auto;
+    margin: 0 10px;
+}
+/* Media query for laptop screens */
+@media screen and (min-width: 1024px) and (max-width: 1800px) {
+    body {
+        font-size: 36px; /* Adjusted for laptop readability */
+    }
+
+    #head {
+        height: 120px; /* Slightly smaller header */
+    }
+
+    .buttons {
+        font-size: 28px;
+        padding: 10px; /* Reduce padding for better proportions */
+    }
+
+    #Pic img {
+        height: 80px; /* Scale down images */
+        margin: 0 5px; /* Reduce spacing */
+    }
+
+    .inf {
+        padding-top: 80px; /* Adjust spacing for laptop view */
+        height: 350px; /* Reduce height slightly */
+    }
+
+    #txt {
+        font-size: 24px; /* Scale text for better readability */
+        width: 300px; /* Slightly narrower */
+    }
+
+    #Etiquette {
+        width: 80%; /* Narrower to fit laptop screens */
+        padding: 15px;
+    }
+
+    #tail {
+        height: auto; /* Adjust height for smaller screens */
+        padding-left: 5%;
+        width: 100%;
+    }
+
+    #t1 {
+        height: 150px;
+        width: 450px; /* Resize for laptop */
+    }
+
+    #sm {
+        height: 40px; /* Resize social media icons */
+    }
+
+    .buttons2 {
+        font-size: 28px;
+        height: 45px; /* Adjust button size */
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 15px; /* Smaller buttons */
+    }
+
+    #prices {
+        height: 300px; /* Adjust ticket section */
+        flex-wrap: wrap; /* Allow wrapping of items */
+    }
+
+    .price {
+        height: 250px;
+        width: 190px; /* Resize ticket cards */
+        padding: 30px;
+    }
+
+    #myBtn {
+        font-size: 24px;
+        padding: 10px 15px; /* Reduce button size */
+        margin-right: 400px; /* Center on screen better */
+    }
+}
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
+#Pic img {
+    height: 100px;
+}
+#tail {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+}
 
+#third, #second, #first {
+    flex: 1;
+    margin: 10px;
+}
+
+#t3 {
+    display: flex;
+    flex-direction: column;
+}
+
+#t2 img {
+    height: 40px;
+    margin: 5px;
+}
