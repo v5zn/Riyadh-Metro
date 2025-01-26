@@ -4,21 +4,28 @@
         <title>Tickets</title>
         <link rel="icon" href="Pics/1..png">
         <link rel="stylesheet" href="RiyadhMetro.css">
-        <script src="RiyadhMetro.js"></script>
     </head>
     <body>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <div id="head">
-
             <a href="login.html" id="acc"><img src="Pics/acc.png" id="acc"></a>
-
             <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
             <a href="line.html" id="a"><button class="buttons">Lines</button></a>
             <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
             <a href="About.html" id="a"><button class="buttons">About</button></a>
             <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
             
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="tickets.html">Tickets</a>
+                    <a href="line.html">Lines</a>
+                    <a href="Paths.html">Paths</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact.html">Contact</a>
+                </div>
+            </div>
             <div id="Pic">
                 <a href="index.html">
                     <img src="Pics/drb.png" style="height: 100px;">
@@ -31,34 +38,38 @@
         <div id="main">
 
             <div id="tkt1">
-                <img src="Pics/tickets.jpg" style="border-radius: 30px;">
+                <img src="Pics/tickets.jpg" id="tktk">
                 <p id="tkt2">Tickets</p>
             </div>
             
-            <br>
+            <br> 
             <div id="buy">
                 <p>Buy Tickets:</p>
                 <div id="prices">
                     <div id="prices">
                         <div class="price">
-                            <img src="Pics/ticket1.png" id="tkti" class="hover-img">
+                            <img src="Pics/ticket1.png" class="hover-img">
                             <p>2 Hours pass</p>
                             <p>4 SAR</p>
+                            <button id="tktbtn">Buy Ticket</button>
                         </div>
                         <div class="price">
                             <img src="Pics/ticket1.png" class="hover-img">
-                            <p>3 Days pass</p>
+                            <p>3 Days pass </p>
                             <p>20 SAR</p>
+                            <button id="tktbtn">Buy Ticket</button>
                         </div>
                         <div class="price">
                             <img src="Pics/ticket1.png" class="hover-img">
                             <p>7 Days pass</p>
                             <p>40 SAR</p>
+                            <button id="tktbtn">Buy Ticket</button>
                         </div>
                         <div class="price">
                             <img src="Pics/ticket1.png" class="hover-img">
                             <p>30 Days pass</p>
                             <p>140 SAR</p>
+                            <button id="tktbtn">Buy Ticket</button>
                         </div>
                     </div>
                 </div>
@@ -86,7 +97,6 @@
                     <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
                     <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
                 </div>
-                <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
             </div>
 
             <div id="second">
