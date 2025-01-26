@@ -4,18 +4,18 @@ body {
     color: #072211;font-size: 40px;
     background-color: #e9f6ee;
 }
-#head{
-    display: flex;height: 140px;
+#head{ 
+    display: flex;height: 130px;
     background-color: #21a953;
     justify-content: right; align-items: center;
 }
 .buttons{ 
     font-family: serif;font-weight: 300;
     color: #031108;font-size: 30px;
-    cursor: pointer;height: 110px;
+    cursor: pointer;height: 100px;
     background-color: transparent;
     margin: 0.7%;border: 0px;display: flex;
-    align-items: center;padding-top: 50px;
+    align-items: center;padding-top: 10px;
 }
 .buttons:hover {
     border-bottom: 5px solid #031108;
@@ -60,12 +60,13 @@ body {
     display: flex;justify-content: right;
     width: 425px;padding-top: 30px;
 }
+
 #sm{
     margin-right: 15px;margin-left: 15px;height: 50px;
 }
 #first{
     padding-left: 80px;width: 600px;
-}
+} 
 #second{
     width: 600px;padding-left: 80px;display: flex;
 }
@@ -84,26 +85,11 @@ body {
     display: block;justify-items: center;
     width: 600px;color: #e9f6ee;padding-top: 43px;
 }
+
 #pi{
     height: 50px;margin-left: 20px;
 }
-#myBtn {
-    border: 2px solid #e9f6ee;
-    background-color: transparent;
-    color: #e9f6ee;
-    cursor: pointer;
-    padding: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
-    font-size: 30px;
-    margin-top: 50px;
-    margin-right: 500px;
-}  
-#myBtn:hover {
-    background-color: #e9f6ee;
-    color: #031108;
-}
+
 #tkt1{
     display: flex;
     justify-content: center;
@@ -119,12 +105,12 @@ a{
     margin: 100px;
 }
 #prices {
-    display: flex;justify-content: center;
+    display: inline-flex;justify-content: center;
     height: 400px;padding: 20px;
 } 
 .price {
     background-color: #21a953;
-    height: 300px;width: 300px;
+    height: 360px;width: 300px;
     border-radius: 10px;margin-right: 10px;
     border: 3px solid #e9f6ee;
     margin-left: 10px;color: white;padding: 40px;
@@ -133,6 +119,10 @@ a{
     background-color: white;
     border: 3px solid #21a953;
     color: #21a953;
+    #tktbtn{
+        color: #21a953;
+        border-color: #21a953;
+    }
 }
 .price:hover .hover-img {
     content: url('Pics/ticket2.png');
@@ -144,100 +134,25 @@ a{
     background-color: #21a953; font-size: 20px;
     color: white;border: 2px solid #21a953;
     padding: 20px;cursor: pointer;
+    margin-top: 5px;
 }
 #a{
-    margin: 20px;
+    margin: 0px;
 }
 .container {
     width: 1200px;
     margin: 0 auto;
 }
 .buttons, .buttons2, .btn {
-    min-width: 100px; /* Ensure buttons are large enough to tap */
-    padding: 15px; /* Increase padding for better touch targets */
+    min-width: 100px; 
+    padding: 15px; 
 }
 #Pic img {
-    height: 100px; /* Adjust this value as needed */
+    height: 100px;
     width: auto;
     margin: 0 10px;
 }
-/* Media query for laptop screens */
-@media screen and (min-width: 1024px) and (max-width: 1800px) {
-    body {
-        font-size: 36px; /* Adjusted for laptop readability */
-    }
 
-    #head {
-        height: 120px; /* Slightly smaller header */
-    }
-
-    .buttons {
-        font-size: 28px;
-        padding: 10px; /* Reduce padding for better proportions */
-    }
-
-    #Pic img {
-        height: 80px; /* Scale down images */
-        margin: 0 5px; /* Reduce spacing */
-    }
-
-    .inf {
-        padding-top: 80px; /* Adjust spacing for laptop view */
-        height: 350px; /* Reduce height slightly */
-    }
-
-    #txt {
-        font-size: 24px; /* Scale text for better readability */
-        width: 300px; /* Slightly narrower */
-    }
-
-    #Etiquette {
-        width: 80%; /* Narrower to fit laptop screens */
-        padding: 15px;
-    }
-
-    #tail {
-        height: auto; /* Adjust height for smaller screens */
-        padding-left: 5%;
-        width: 100%;
-    }
-
-    #t1 {
-        height: 150px;
-        width: 450px; /* Resize for laptop */
-    }
-
-    #sm {
-        height: 40px; /* Resize social media icons */
-    }
-
-    .buttons2 {
-        font-size: 28px;
-        height: 45px; /* Adjust button size */
-    }
-
-    .btn {
-        font-size: 18px;
-        padding: 15px; /* Smaller buttons */
-    }
-
-    #prices {
-        height: 300px; /* Adjust ticket section */
-        flex-wrap: wrap; /* Allow wrapping of items */
-    }
-
-    .price {
-        height: 250px;
-        width: 190px; /* Resize ticket cards */
-        padding: 30px;
-    }
-
-    #myBtn {
-        font-size: 24px;
-        padding: 10px 15px; /* Reduce button size */
-        margin-right: 400px; /* Center on screen better */
-    }
-}
 #head {
     display: flex;
     justify-content: space-between;
@@ -269,4 +184,414 @@ a{
 #t2 img {
     height: 40px;
     margin: 5px;
+}
+.button i {
+    font-size: 3rem;
+  }
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px; 
+  }
+  .header {
+    background: rgba(144, 238, 144, 0.7);
+    color: #031108;
+    padding: 40px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 20px;
+  }
+  @keyframes changeBackground {
+    0% { background-color: #d32f2f; }
+    16.66% { background-color: #4CAF50; }
+    33.33% { background-color: #0072bc; }
+    50% { background-color: #FFD700; }
+    66.66% { background-color: #800080; }
+    83.33% { background-color: #FFA500; }
+    100% { background-color: #d32f2f; }
+  }
+
+  .button {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .red {
+    color: #d32f2f;
+  }
+
+  .green {
+    color: #4CAF50;
+  }
+
+  .blue {
+    color: #0072bc;
+  }
+
+  .yellow {
+    color: #FFD700;
+  }
+
+  .purple {
+    color: #800080;
+  }
+
+  .orange {
+    color: #FFA500;
+  }
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  #tktk{
+    border-radius: 30px;width: 1650px;
+  }
+  #paths{border-radius: 20px; width: 1650px;}
+  #path{position: absolute;
+     top: 53%; left: 21%; transform: translate(-50%, -50%); 
+     margin: 0; color: white; font-size: 50px; font-weight: bold; 
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    #tktbtn{            
+        height: 90px;
+        width: 200px;
+        background-color: inherit;
+        border: 2px solid #e9f6ee;
+        border-radius: 7px;
+        color: #e9f6ee;
+        font-family: serif;font-weight: 300;
+        font-size: 30px;    cursor: pointer;
+    }
+    
+    
+    @media (max-width: 1600px) {
+        #path{
+            top: 44%; left: 30%; 
+        }
+        .price {
+            height: 185;width: 150px;
+            border-radius: 10px;margin-right: 10px;
+            border: 3px solid #e9f6ee;
+            margin-left: 10px;color: white;padding: 20px;
+            font-size: 20px;
+        }
+        .hover-img{
+            height: 40px;
+        }
+        #drb{
+            height: 100px;
+        }
+        #tktk{
+            border-radius: 30px;width: 900px;
+        }
+        #t2{
+            width: 300px;
+        }
+            #tail {
+                align-items: flex-start;
+                height: auto;
+                padding: 20px;
+                overflow: hidden;
+            }
+        #Pic{
+            margin-left: 3%; 
+        }
+        #paths{border-radius: 20px; width: 1150px;}
+        #tktbtn{            
+            height: 45px;
+            width: 100px;
+            font-size: 15px;}
+      }
+
+.dropdown {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+
+    #tail{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .dropdown {
+        display: block;
+    }
+
+    #a{
+        display: none;
+    }
+    #Etiquette{
+        width: 800px;
+    }
+    #paths{border-radius: 20px; width: 1050px;}
+
+.dropbtn {
+    background-color: #21a953;
+    color: #031108;font-size: 30px;
+    font-family: serif;
+    padding: 26px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #21a953;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block !important;
+}
+
+.dropdown-content a {
+    color: #031108;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+}
+#trip-planner-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 17px;
+}
+
+#trip-planner {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px; background-color: #f9f9f9; border-radius: 8px; margin-right: 10px; width: 300px;
+}
+
+#trip-planner select, 
+#trip-planner button {
+    font-size: 14px;
+}
+
+#trip-planner h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#info-button img {
+    transition: transform 0.3s ease;
+}
+#info-button:hover img {
+    transform: scale(1.1);
+}
+
+#info-box {
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+#info-button{
+    top: 10px; right: 10px; background: transparent; border: none; cursor: pointer;
+}
+
+.page-title {
+    font-size: 42px;
+    font-family: 'Poppins', sans-serif;
+    color: #4CAF50;
+    margin: 30px 0;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #4CAF50, #21a953);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+.faq-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.faq-button:hover {
+    background-color: #45a049;
+}
+
+.contact-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.contact-form h1 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.contact-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.radio-group {
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"]:checked {
+    accent-color: #4CAF50;
+}
+
+.radio-group label:hover {
+    color: #4CAF50;
+}
+
+.contact-info {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.contact-info h2 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.contact-info .info-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info .info-box .icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #4CAF50;
+}
+
+.contact-info .info-box strong {
+    color: #333;
+}
+#contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
