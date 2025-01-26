@@ -1,63 +1,84 @@
 <html>
     <head>
 
-        <title>Riyadh Metro</title>
+        <title>Lines</title>
         <link rel="icon" href="Pics/1..png">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="RiyadhMetro.css">
 
 
 
     </head>
     <body>
-
-        <div id="head">
-            <a href="login.html" id="acc"><img src="Pics/acc.png" id="acc"></a>
-            <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
-            <a href="line.html" id="a"><button class="buttons">Lines</button></a>
-            <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
-            <a href="About.html" id="a"><button class="buttons">About</button></a>
-            <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
-            
-            <div class="dropdown">
-                <button class="dropbtn">Menu</button>
-                <div class="dropdown-content">
-                    <a href="tickets.html">Tickets</a>
-                    <a href="line.html">Lines</a>
-                    <a href="Paths.html">Paths</a>
-                    <a href="About.html">About</a>
-                    <a href="Contact.html">Contact</a>
-                </div>
-            </div>
         
-            <div id="Pic">
-                <img src="Pics/drb.png">
-                <img src="Pics/unii.png">
+      <div id="head">
+        <a href="login.html" id="acc"><img src="Pics/acc.png" id="acc"></a>
+        <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
+        <a href="line.html" id="a"><button class="buttons">Lines</button></a>
+        <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
+        <a href="About.html" id="a"><button class="buttons">About</button></a>
+        <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="tickets.html">Tickets</a>
+                <a href="line.html">Lines</a>
+                <a href="Paths.html">Paths</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
             </div>
         </div>
-
-        <div id="main">
-
-            <div class="inf">
-                <img src="Pics/inf1.jpeg" id="img">
-                <p id="txt">in Riyadh Metro, Our priority is to make your every journey seamless and stress free.</p>
-            </div>
-            <div class="inf">
-                <p id="txt">
-                Riyadh Metro features an advanced surveillance system of over 10,000 CCTV  cameras, to ensure passenger safety.</p>
-                <img src="Pics/inf2.jpeg" id="img">
-            </div>
-            <div id="Etiquette">
-                <h3>Metro Etiquette</h3>
-                <ul>
-                    <br><li>Please don't push</li> <br>
-                    <li>Please respect personal space</li> <br>
-                    <li>Please move along the platform</li> <br>
-                    <li>Please give way to other people</li> <br>
-                    <li>Please move down into the cabins</li> <br>
-                    <li>Please allow passengers to get off the train before you get on</li>
-                </ul> <br>
-            </div>
             
+          <div id="Pic">
+            <a href="index.html">
+                <img src="Pics/drb.png" style="height: 100px;">
+            </a>
+            <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
+        </div>
+        </div>
+
+
+
+        <div class="container">
+
+            <div class="header">
+              <h1>Metro Lines</h1>
+              <p>Explore the different metro lines in Riyadh</p>
+            </div>
+        
+            
+            <div class="grid">
+              <a href="red.html" class="button red">
+                <i class="fas fa-train"></i>
+                Red Line
+              </a>
+              <a href="green.html" class="button green">
+                <i class="fas fa-train"></i>
+                Green Line
+              </a>
+              <a href="blue.html" class="button blue">
+                <i class="fas fa-train"></i>
+                Blue Line
+              </a>
+              <a href="yellow.html" class="button yellow">
+                <i class="fas fa-train"></i>
+                Yellow Line
+              </a>
+              <a href="purple.html" class="button purple">
+                <i class="fas fa-train"></i>
+                Purple Line
+              </a>
+              <a href="orange.html" class="button orange">
+                <i class="fas fa-train"></i>
+                Orange Line
+              </a>
+            </div>
+        
+            <div style="height: 100px;"></div> 
+          </div>
+
+
         <div id="tail">
 
             <div id="third">
@@ -94,15 +115,4 @@
                     
                 </div>
             </div>
-
-        </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var dropdown = document.querySelector('.dropbtn');
-            dropdown.addEventListener('click', function() {
-                var dropdownContent = document.querySelector('.dropdown-content');
-                dropdownContent.classList.toggle('show');
-            });
-        });
-        </script>    </body>
+    </body>
