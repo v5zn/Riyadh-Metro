@@ -4,37 +4,116 @@
         <title>Paths</title>
         <link rel="icon" href="Pics/1..png">
         <link rel="stylesheet" href="RiyadhMetro.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script src="RiyadhMetro.js"></script>
     </head>
     <body>
         <div id="head">
-
-            <button class="buttons" id="acc"><a href="account.html"><img src="Pics/acc.png" id="acc"></a></button>
-
+            <a href="login.html" id="acc"><img src="Pics/acc.png" id="acc"></a>
             <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
             <a href="line.html" id="a"><button class="buttons">Lines</button></a>
             <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
             <a href="About.html" id="a"><button class="buttons">About</button></a>
             <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
             
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="tickets.html">Tickets</a>
+                    <a href="line.html">Lines</a>
+                    <a href="Paths.html">Paths</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact.html">Contact</a>
+                </div>
+            </div>
             <div id="Pic">
                 <a href="index.html">
-                    <img src="Pics/drb.png" style="height: 100px">
+                    <img src="Pics/drb.png" style="height: 100px;">
                 </a>
                 <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
             </div>
+
         </div>
         <div style="display: flex; justify-content: center; padding: 20px;">
-            <img src="Pics/metro-banner.jpg" style="border-radius: 20px;">
-            <p style="position: absolute; top: 53%; left: 21%; transform: translate(-50%, -50%); margin: 0; color: white; font-size: 50px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Metro map and lines</p>
+            <img src="Pics/metro-banner.jpg" id="paths">
+            <p id="path">Metro map and paths</p>
         </div>
         
-        <div id="map">     
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d231878.17838188433!2d46.709632!3d24.757879!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1736005395822!5m2!1sen!2sus" 
-                    width="1100" height="800" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    
+        <main>
+            <div id="trip-planner-container" style="display: flex;">
+    <!-- Trip Planner Form -->
+    <div id="trip-planner" style="padding: 10px; background-color: #f9f9f9; border-radius: 8px; margin-right: 10px; width: 300px;">
+        <h3 style="color: #343434; font-weight: bold; font-size: 20px;">Plan your trip <button id="info-button" style="top: 10px; right: 10px; background: transparent; border: none; cursor: pointer;">
+        <img src="Pics/metro-info.jpg" alt="Info" style="width: 24px; height: 24px;">
+        </button></h3>
+        
+
+    <!-- Info Box (Initially Hidden) -->
+    <div id="info-box" style="font-size: 15px; display: none; top: 50px; right: 10px; background: white; padding: 5px; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 5px; z-index: 1000;">
+        <p>You can see the map to find the closest stations to your location and your destination, and figure out on which lines they're. 
+            Then you can select them below.</p>
+    </div>
+        <!-- Line Selection for Departure -->
+        <div style="margin-bottom: 10px;">
+            <label for="departure-line" style="font-weight: bold; font-size: 32px;">Departure Line:</label>
+            <select id="departure-line" style="width: 100%; padding: 5px; margin-top: 5px;  border-radius: 5px; font-size: 16px; font-weight: bold;">
+                <option value="" disabled selected>Select a line</option>
+                <option value="line1">Line 1 (Blue)</option>
+                <option value="line2">Line 2 (Red)</option>
+                <option value="line3">Line 3 (Orange)</option>
+                <option value="line4">Line 4 (Yellow)</option>
+                <option value="line5">Line 5 (Green)</option>
+                <option value="line6">Line 6 (Purple)</option>
+            </select>
         </div>
+
+        <!-- Departure Station Selection -->
+        <div style="margin-bottom: 10px;">
+            <label for="departure" style="font-weight: bold; font-size: 37px;">Choose Departure:</label>
+            <select id="departure" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;" disabled>
+                <option value="" disabled selected>Select departure station</option>
+            </select>
+        </div>
+
+        <!-- Line Selection for Destination -->
+        <div style="margin-bottom: 10px;">
+            <label for="destination-line" style="font-weight: bold; font-size: 32px;">Destination Line:</label>
+            <select id="destination-line" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;">
+                <option value="" disabled selected>Select a line</option>
+                <option value="line1">Line 1 (Blue)</option>
+                <option value="line2">Line 2 (Red)</option>
+                <option value="line3">Line 3 (Orange)</option>
+                <option value="line4">Line 4 (Yellow)</option>
+                <option value="line5">Line 5 (Green)</option>
+                <option value="line6">Line 6 (Purple)</option>
+            </select>
+        </div>
+
+        <!-- Destination Station Selection -->
+        <div style="margin-bottom: 10px;">
+            <label for="destination" style="font-weight: bold; font-size: 37px;">Choose Destination:</label>
+            <select id="destination" style="width: 100%; padding: 5px; margin-top: 5px; border-radius: 5px; font-size: 16px; font-weight: bold;" disabled>
+                <option value="" disabled selected>Select destination station</option>
+            </select>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button id="plan-trip" style="padding: 10px 20px; border: none; background-color: #05af05; color: white; border-radius: 5px; cursor: pointer;">Plan Trip</button>
+            <button id="reset-trip" style="padding: 10px 20px; border: none; background-color: #ddd; border-radius: 5px; cursor: pointer;">Reset</button>
+        </div>
+    </div>
+        <div id="map" style="height: 850px; width: 1400px; margin-left: 30px; border-radius: 20px;"></div>
+        </div>
+        </main>
+        
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="map.js"></script>
         <h3 style="margin-left: 580px; font-family: cursive">Let Us Show You The<span style="color: lime; font-family: cursive"> Way...</span></h3>
-        <video style="margin-left: 280px;" src="Pics/moving-metro.mp4" autoplay="" muted="" loop=""></video>
+        <video style="    display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;" src="Pics/moving-metro.mp4" autoplay="" muted="" loop=""></video>
         
         <footer>
             <div id="tail">
@@ -45,7 +124,6 @@
                         <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
                         <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
                     </div>
-                    <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
                 </div>
     
     
