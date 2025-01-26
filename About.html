@@ -4,52 +4,9 @@
     <meta charset="UTF-8">
     <link rel="icon" href="Pics/1..png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="RiyadhMetro.css">
     <title>About Riyadh Metro</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: serif;
-            font-weight: 300;
-            color: #072211;
-            font-size: 40px;
-            background-color: #e9f6ee;
-        }
-
-        #head {
-            display: flex;
-            height: 140px;
-            background-color: #21a953;
-            justify-content: right;
-            align-items: center;
-        }
-
-        .buttons {
-            font-family: serif;
-            font-weight: 300;
-            color: #031108;
-            font-size: 30px;
-            cursor: pointer;
-            height: 110px;
-            background-color: transparent;
-            margin: 0.7%;
-            border: 0px;
-            display: flex;
-            align-items: center;
-            padding-top: 50px;
-        }
-
-        .buttons:hover {
-            border-bottom: 5px solid #031108;
-        }
-
-        #Pic {
-            display: flex;
-            height: 100px;
-            margin-left: 15%;
-            margin-right: 2%;
-        }
-
         .inf {
             display: flex;
             padding-top: 100px;
@@ -57,28 +14,19 @@
             height: 400px;
             justify-content: center;
         }
-
-        #img {
-            height: inherit;
-            margin: 10px;
-        }
-
         #main {
             padding: 50px 20px;
             text-align: center;
         }
-
         .section {
             margin-bottom: 50px;
         }
-
         .section h2 {
             font-size: 36px; 
             color: #21a953;
             margin-bottom: 25px; 
             font-weight: bold; 
         }
-
         .section p {
             font-size: 20px; 
             line-height: 1.8; 
@@ -91,7 +39,6 @@
             margin: 0 auto; 
             hyphens: auto; 
         }
-
         .stats {
             display: flex;
             justify-content: space-around;
@@ -104,165 +51,57 @@
         .stat-item {
             text-align: center;
         }
-
         .stat-item h3 {
             font-size: 32px; 
             color: #21a953;
             margin: 15px 0; 
         }
-
         .stat-item p {
             font-size: 18px; 
             color: #072211;
         }
-
         #txt {
             width: 350px;
             margin: 30px;
             justify-content: center;
         }
-
-        #acc {
-            height: 70px;
-            margin-right: 20%;
+        @media (max-width: 1400px) {
+        #t2{
+            width: 300px;
         }
-
-        #acc:hover {
-            border-bottom: 0px;
-        }
-
-        #Etiquette {
-            display: block;
-            margin: 100px auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 1100px;
-            text-align: center;
-            background: transparent;
-            border-radius: 10px;
-            border: 2px solid #031108;
-        }
-
-        #tail {
-            display: flex;
-            height: auto;
-            width: auto;
-            background-color: #031108;
-            padding-left: 7%;
-            justify-content: right;
-        }
-
-        #t1 {
-            height: 180px;
-            width: 500px;
-            align-items: last baseline;
-            display: flex;
-        }
-
-        #drb {
-            height: 120px;
-        }
-
-        #t2 {
-            display: flex;
-            justify-content: right;
-            width: 425px;
-            padding-top: 30px;
-        }
-
-        #sm {
-            margin-right: 15px;
-            margin-left: 15px;
-            height: 50px;
-        }
-
-        #first {
-            padding-left: 80px;
-            width: 600px;
-        }
-
-        #second {
-            width: 600px;
-            padding-left: 80px;
-            display: flex;
-        }
-
-        .buttons2 {
-            display: flex;
-            font-family: serif;
-            font-weight: 300;
-            color: #e9f6ee;
-            font-size: 30px;
-            cursor: pointer;
-            height: 50px;
-            margin: 3%;
-            border: 0px;
-            background-color: transparent;
-            align-items: center;
-            padding-top: 50px;
-        }
-
-        #t3 {
-            width: 280px;
-            padding-top: 50px;
-        }
-
-        #third {
-            display: block;
-            justify-items: center;
-            width: 600px;
-            color: #e9f6ee;
-            padding-top: 43px;
-        }
-
-        #pi {
-            height: 50px;
-            margin-left: 20px;
-        }
-
-        #myBtn {
-            border: 2px solid #e9f6ee;
-            background-color: transparent;
-            color: #e9f6ee;
-            cursor: pointer;
-            padding: 15px;
-            padding-left: 20px;
-            padding-right: 20px;
-            border-radius: 10px;
-            font-size: 30px;
-            margin-top: 50px;
-            margin-right: 500px;
-        }
-
-        #myBtn:hover {
-            background-color: #e9f6ee;
-            color: #031108;
-        }
-        a{
-    color: transparent;
-    
-}
-    
-        #a{
-    margin: 20px;
-}
-#acc{
-    height: 70px; margin-right: 10%;
-
-}
+            #tail {
+                align-items: flex-start;
+                height: auto; /* Adjust height for smaller screens */
+                padding: 20px; /* Adjust padding for smaller screens */
+                overflow: hidden; /* Prevent overflow */
+                font-size: 40px;
+            }
+      }
+      
         </style>
 </head>
 <body>
     <div id="head">
-        <button class="buttons" id="acc"><img src="Pics/acc.png" id="acc"></button>
+        <a href="login.html" id="acc"><img src="Pics/acc.png" id="acc"></a>
         <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
         <a href="line.html" id="a"><button class="buttons">Lines</button></a>
         <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
         <a href="About.html" id="a"><button class="buttons">About</button></a>
         <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="tickets.html">Tickets</a>
+                <a href="line.html">Lines</a>
+                <a href="Paths.html">Paths</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
         <div id="Pic">
             <a href="index.html">
-                <img src="Pics/drb.png"style="height: 100px;">
+                <img src="Pics/drb.png">
             </a>            <img src="Pics/unii.png">
         </div>
     </div>
@@ -307,7 +146,6 @@
             <p>The Riyadh Metro is a significant addition to the Saudi capital, impacting various aspects of city life. This massive project is more than just a transportation system; it's an investment in the city's future. By reducing traffic congestion and improving air quality, the metro contributes to a healthier and more sustainable environment. Furthermore, it provides a fast and convenient mode of transportation, boosting individual productivity and stimulating economic growth. Additionally, the metro plays a crucial role in developing areas around stations, encouraging the establishment of new commercial and residential projects, thus revitalizing economic activity and creating new job opportunities.</p>
         </div>
     </div>
-
     <div id="tail">
 
         <div id="third">
@@ -316,7 +154,6 @@
                 <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
                 <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
             </div>
-            <button onclick="topFunction()" id="myBtn" title="Go to top">↑</button>  
         </div>
 
 
