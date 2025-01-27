@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="Pics/1..png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Riyadh Metro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="RiyadhMetro.css">
+
+</head>
+<body>
+        <div id="head">
+        <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
+        <a href="line.html" id="a"><button class="buttons">Lines</button></a>
+        <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
+        <a href="About.html" id="a"><button class="buttons">About</button></a>
+        <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="tickets.html">Tickets</a>
+                <a href="line.html">Lines</a>
+                <a href="Paths.html">Paths</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+        </div>
+        <div id="Pic">
+            <a href="index.html">
+                <img src="Pics/drb.png" style="height: 100px;">
+            </a>
+            <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
+        </div>
+
+    </div>
+
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-container">
+       
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Do I have to use the same bank card when entering and exiting the station?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Yes, the same card must be used to enter and exit the station.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>What are the ticket fares for the Riyadh Metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="fares">
+                The Riyadh Metro offers different options depending on the passenger's route requirements. In the introductory phase, fares for regular cabins will be:
+                <ul>
+                    <li>2-hour pass for SAR 4</li>
+                    <li>3-day pass for SAR 20</li>
+                    <li>7-day pass for SAR 40</li>
+                    <li>30-day pass for SAR 140</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Do children need a ticket?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Children below the age of six can ride the metro for free, but they must be accompanied by an adult
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Where can I buy my ticket?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="lost">
+                There are several ways to purchase a ticket: From any ticket office at all metro stations Through the darb app Using a contactless bank card, Apple Pay, or Mada Pay to check in and out at the metro gates
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can cash be used at the TVM to buy tickets? </span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="accessibility">
+                Yes, banknotes (cash) can be used to buy tickets at Ticket Vending Machines (TVMs). Please note that coins are not accepted.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Who is eligible for a discount or concession?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="operating">
+              <p> The following categories of people are eligible for a 50% discount on all fares upon the first issuance of a registered darb card at any ticket office provided they satisfy the validation requirements with the necessary documentation: Children 6 years of age and below can travel for free Students:</p>
+
+              <p> National ID or Iqama and a valid student ID card issued by a KSA university or school (or a letter) Seniors (60 years and above):</p>
+                
+              <p> National ID or Iqama Persons with disabilities (plus one companion):</p>
+                
+              <p>National ID or Iqama and proof of disability Cancer patients (plus one companion):</p>
+                
+              <p>National ID or Iqama and an approved medical report Martyrs’ first-degree relatives:</p>
+                
+              <p> National ID or Iqama and or proof from relevant government authority</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Are there different classes e.g. business, economy, and what are the prices?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+               <p> Yes, the following classes are available on the Riyadh Metro at different fares (for a 2-hour pass):</p>
+               <p> First-class:10 SAR </p>
+               <p> Regular: 4 SAR</p>
+               <p> Note: During peak hours, RPT cannot guarantee a seat in the first-class cabin.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Does the Riyadh Metro offer a reusable digital card?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                <p>Yes, you can purchase the darb card from any Ticket Vending Machine (TVM) or ticket sales office for SAR 10. This reusable card can be conveniently topped up using the TVMs at the stations or at the ticket office.</p>
+                <p>The currently implemented fare media are:</p>
+                <p>QR ticket via the official app</p>
+                <p>darb card, a contactless card valid for 5 years from purchase</p>
+                <p>Contactless debit or credit card</p>
+                <p>Apple Pay</p>
+                <p>Mada Pay</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>How can I refund a ticket?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Refunds can only be obtained depending on the reason. For more information about the refund policy, please contact the Customer Care Center at <a href="tel:19933">19933</a>.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>How do I transfer between different lines within the Riyadh Metro network?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Transfer stations are designated points where passengers can easily switch between metro lines. Metro staff are on-site to assist you with the transfer process, ensuring a smooth and convenient experience, or you may also contact the Customer Care Center at <a href="tel:19933">19933</a>.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>I heard university students get a discount on the metro fare. Where can I get more details?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+               <p> Yes, university students are eligible for a 50% discount on tickets.</p> <p>To avail the discount, visit a ticket office at any station and provide official documents of enrollment or your university ID.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>If I miss the metro or change my mind to ride it, can I request a refund?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                If your ticket or QR code has expired – based on the duration and validity of the time-based ticket – it cannot be used. For example, a 2-hour pass can be used any time during the two-hour period only. For more information, contact the Customer Care Center at <a href="tel:19933">19933</a>.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>How long are metro tickets valid?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                The tickets are time-based therefore are only valid during the pre-set duration. We currently offer the following time-based options: 2-hour, 3-hour, 7-dau and 30-day passes.            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>What are operating hours of the Riyadh Metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                6am to 12am, every day.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>What is the metro’s frequency?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                During peak hours, intervals range from three to five minutes depending on the line, and during normal hours, they vary from five to ten minutes (during the introductory phase). For more details, please refer to schedules displayed across screens at the metro stations.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Where can I find information on the network, routes and timings of the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Please visit our website www.rpt.sa for more information on journey planning.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I reuse a single journey ticket if I leave the station for just a brief moment?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Passengers can enter and exit through the gates as long as they have a valid ticket. For example, if you have a 2-hour pass, you can enter and exit as needed within the two-hour time frame.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>If my darb card isn’t working, can I get it fixed through the call center, or do I need to visit a TVM?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                If you are facing issues with your darb card, please visit a ticket office at any of our 85 stations across Riyadh. To find the nearest station, visit our website at rpt.sa. Note: Our working hours are from 6am to 12am.            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>How to connect to the Riyadh Metro Wi-Fi?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                To access free Wi-Fi across our 85 metro stations, connect to the network named ‘Riyadh Public Transport (RPT)’. Enter your phone number and follow the prompts to input the verification code. Enjoy browsing!          </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I access my account from another mobile device?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Access to your account is restricted to a single device. For additional information, please contact our Customer Care Center at <a href="tel:19933">19933</a>.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Is there free parking available at metro stations?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                <p>There are currently 19 Park & Ride locations available for commuters, each with a capacity of 200-600 cars. The facility offers a free pick-up and drop-off period, which is customizable but typically recommended to be 15 minutes. You can enjoy free parking for up to 12 hours if you use the same card on the Bus or Metro during that time under the Park & Ride scheme. If you exceed this period, a charge of SAR 10 per hour is applied, with a daily cap of SAR 130.</p>
+                <p>For those using parking only, the same rate of SAR 10 per hour applies, with a maximum charge of SAR 130 per day. Long-term parking is not allowed; vehicles parked for more than 48 hours may be towed at your own cost. Accepted fare media include a valid darb card with an e-purse or a time-based pass that covers 3, 7, or 30 days. At checkout, the applicable charge will be deducted from the darb card e-purse balance.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I take luggage on the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Yes, however, specific size restrictions apply to luggage allowed onboard. The suitcase should meet the following measurements: 56x45x25 cm.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I take an eScooter or bicycle on the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                They are allowed, however, they must be foldable.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>How many passengers can the metro accommodate? </span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                The Riyadh Metro is the backbone of Riyadh’s public transport network and has been developed to transport over 3.6 million passengers in the future. During the initial phase, the metro is capable of transporting 1.16 million passengers per day.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Is there a station at the airport?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                There are three stations at the airport – Terminals 1 & 2, Terminals 3 & 4, and Terminal 5 – served via Line 4 of the Riyadh Metro.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I eat and drink on the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                To ensure the safety, well-being and cleanliness of the Riyadh Metro system, eating or drinking is not allowed. If you bring food or beverages, please ensure they are securely stored in spill-proof, closed containers.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Can I take my pet on the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Pets, whether caged or leashed, are not permitted on the metro. However, service dogs for visually-impaired commuters are allowed.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Who do I contact if I left or lost something on the metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Contact our Customer Care Center at <a href="tel:19933">19933</a> or submit a Lost & Found inquiry through the <a href="contact.html">‘Contact Us’</a> section on the darb app or website.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>Where can I file a complaint, provide feedback, or report an issue regarding my experience on the Riyadh Metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                Call our Customer Care Center at <a href="tel:19933">19933</a> or send an email using the inquiry form found in the <a href="contact.html">‘Contact Us’</a> section of the darb app or website.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>If I see someone misbehaving on the metro, who can I contact to resolve the matter?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                <p>There are multiple ways to seek assistance:  </p>
+                <p>Passengers can approach any station staff member for help. </p>
+                <p>Press the intercom button located in stations and trains to connect with the Operations Control Center (OCC).</p>
+                <p>Press the SOS button on Ticket Vending Machines (TVM) to contact the Customer Care Center (CCC) or call the CCC directly at <a href="tel:19933">19933</a>.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>What should I do if I miss the last train of the day on the Riyadh Metro?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                If you miss the last train of the day, passengers should consider using an alternative mode of transportation to complete their journey. Metro staff and Customer Care Center (CCC) personnel are available to assist you and provide guidance on your transportation options.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>I filed a complaint two days ago and I still haven’t heard back. What do I do?</span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+                The Customer Care Center team is working on your complaint as a top priority. For updates on your complaint, please call us on 19933.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(this)">
+                <span>What accessibility features are available for passengers with impaired mobility?  </span> <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer" id="children">
+            <p>Accessibility features for passengers with impaired mobility include:</p>
+            <p>Elevator Access: Elevators provide access to all metro station levels. Wide Ticket Gates: Designed for easy passage, along with special ticket counters to assist users.</p>
+            <p>Platform Screen Doors: These doors are wide enough to accommodate wheelchair users when boarding or alighting from trains.</p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="tail">
+
+        <div id="third">
+            <p>Download darb app now!</p>
+            <div>
+                <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
+            </div>
+        </div>
+
+        <div id="second">
+            <div id="t3"> 
+                <a href="line.html"><button class="buttons2">Metro lines</button></a>
+                <a href="Paths.html"><button class="buttons2">Plan your journy</button></a>
+                <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
+            </div>
+
+            <div id="t3">
+                <a href="About.html"><button class="buttons2">About the metro</button></a>
+                <a href="Contact.html"><button class="buttons2">Contact us</button></a>
+            </div>
+        </div>
+
+        <div id="first">
+            <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+            <div id="t2">
+                <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w/community?pvf=CAI%253D"><img src="Pics/youtube.png" id="sm"></a>
+                <a href="https://www.linkedin.com/company/riyadhtransport/"><img src="Pics/linkedin.png" id="sm"></a>
+                <a href="https://www.facebook.com/riyadhtransport"><img src="Pics/facebook.png" id="sm"></a>
+                <a href="https://www.instagram.com/riyadhtransport/"><img src="Pics/instagram.png" id="sm"></a>
+                <a href="https://x.com/RiyadhTransport"><img src="Pics/twitter.png" id="sm"></a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleAnswer(questionElement) {
+            const answer = questionElement.nextElementSibling;
+            const arrow = questionElement.querySelector('.arrow');
+
+            answer.classList.toggle("show");
+            arrow.classList.toggle("rotated");
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
