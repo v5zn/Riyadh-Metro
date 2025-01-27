@@ -4,7 +4,7 @@
     <title>Login</title>
     <link rel="icon" href="Pics/1..png">
     <style>
-        body {
+      body {
             background-color: #f5f5f5;
             background: linear-gradient(to right, #e2e2e2, #21a953);
             display: flex;
@@ -228,6 +228,7 @@
         }
 
         .image-container img {
+            width: 100px;
             height: 100px;
             border-radius: 10px;
             object-fit: cover;
@@ -356,46 +357,46 @@
 
         .home-button:hover {
             background-color: #188740;
-        }
+        }  
     </style>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form id="signup-form">
                 <div class="image-container">
-                    <img src="Pics/1..png"  id="dynamic-image">
-                    <img src="Pics/unii.png" id="dynamic-image">
+                    <img src="Pics/1..png" alt="Image 1">
+                    <img src="Pics/unii.png" alt="Image 2">
                 </div>
                 <h1>Create an account</h1>
-                <input type="text" placeholder="Username" required>
-                <input type="email" placeholder="Email" required>
+                <input type="text" id="signup-username" placeholder="Username" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
                 <div class="password-container">
                     <input type="password" id="signup-password" placeholder="Password" required>
                     <span id="toggle-signup-password" class="eye-icon">&#128065;</span>
                 </div>
                 <div class="button-container">
-                    <button type="submit">Sign up</button>
-                    <button class="home-button" onclick="window.location.href='home.html'">Home</button>
+                    <button type="submit">Signup</button>
+                    <button class="home-button" onclick="window.location.href='index.html'">Home</button>
                 </div>
             </form>
         </div>
 
         <div class="form-container sign-in">
-            <form>
+            <form id="login-form">
                 <div class="image-container">
-                    <img src="Pics/1..png"  id="dynamic-image">
-                    <img src="Pics/unii.png" id="dynamic-image">
+                    <img src="Pics/1..png" alt="Image 1">
+                    <img src="Pics/unii.png" alt="Image 2">
                 </div>
-                <h1>Log in</h1>
-                <input type="email" placeholder="Email" required>
+                <h1>Login</h1>
+                <input type="email" id="login-email" placeholder="Email" required>
                 <div class="password-container">
                     <input type="password" id="login-password" placeholder="Password" required>
                     <span id="toggle-login-password" class="eye-icon">&#128065;</span>
                 </div>
                 <a href="#" id="forgot-password">Forgot your password?</a>
                 <div class="button-container">
-                    <button type="submit">Log in</button>
+                    <button type="submit">Login</button>
                     <button class="home-button" onclick="window.location.href='index.html'">Home</button>
                 </div>
             </form>
@@ -404,14 +405,14 @@
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Log in</h1>
+                    <h1>Login</h1>
                     <p>Already have an account?</p>
-                    <button class="hidden" id="log-in">Log in</button>
+                    <button class="hidden" id="log-in">Login</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Join us</h1>
                     <p>New? Create an account</p>
-                    <button class="hidden" id="register">Sign up</button>
+                    <button class="hidden" id="register">Signup</button>
                 </div>
             </div>
         </div>
@@ -423,13 +424,83 @@
                 <form>
                     <input type="email" placeholder="Enter your email" required>
                     <button type="submit">Send Reset Link</button>
-                    <button type="button" class="home-button" onclick="window.location.href='home.html'">Home</button>
+                    <button type="button" class="home-button" onclick="window.location.href='index.html'">Home</button>
                 </form>
             </div>
         </div>
     </div>
 
     <script>
+        
+document.getElementById("signup-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const username = document.getElementById("signup-username").value;
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
+
+    fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Registration has been successfully completed ");
+            document.getElementById("container").classList.remove("active"); 
+        } else {
+            alert("Registration error  " + data.message);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+
+       
+        document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                window.location.href = "index.html"; 
+            } else {
+                alert(data.message); 
+            }
+        })
+        .catch((error) => console.error("Error:", error));
+});
+        function togglePasswordVisibility(passwordFieldId, eyeIconId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const eyeIcon = document.getElementById(eyeIconId);
+            const type = passwordField.type === "password" ? "text" : "password";
+            passwordField.type = type;
+            eyeIcon.classList.toggle("active", type === "text");
+        }
+
+        document.getElementById("register").addEventListener("click", () => {
+    document.getElementById("container").classList.add("active");
+});
+
+document.getElementById("log-in").addEventListener("click", () => {
+    document.getElementById("container").classList.remove("active");
+});
+
+        document.getElementById("toggle-signup-password").addEventListener("click", () => {
+            togglePasswordVisibility("signup-password", "toggle-signup-password");
+        });
+
         document.getElementById("forgot-password").addEventListener("click", (e) => {
             e.preventDefault();
             document.getElementById("reset-modal").style.display = "block";
@@ -449,25 +520,7 @@
             document.getElementById("container").classList.remove("active");
         });
 
-        document.getElementById("register").addEventListener("click", () => {
-            document.getElementById("container").classList.add("active");
-        });
-
-        function togglePasswordVisibility(passwordFieldId, eyeIconId) {
-            const passwordField = document.getElementById(passwordFieldId);
-            const eyeIcon = document.getElementById(eyeIconId);
-            const type = passwordField.type === "password" ? "text" : "password";
-            passwordField.type = type;
-            eyeIcon.classList.toggle("active", type === "text");
-        }
-
-        document.getElementById("toggle-login-password").addEventListener("click", () => {
-            togglePasswordVisibility("login-password", "toggle-login-password");
-        });
-
-        document.getElementById("toggle-signup-password").addEventListener("click", () => {
-            togglePasswordVisibility("signup-password", "toggle-signup-password");
-        });
+       
     </script>
 </body>
 </html>
