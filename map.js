@@ -227,8 +227,9 @@ populateStations("destination-line", "destination");
 
 
 document.getElementById('reset-trip').addEventListener('click', () => {
-    location.reload();
+    location.href = `path.html`;
 });
+
 
 
 const stationCoordinates = {
@@ -485,3 +486,38 @@ infoButton.addEventListener('click', () => {
         infoBox.style.display = 'none'; // Hide the info box
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const departureStation = urlParams.get("departure");
+    const departureLine = urlParams.get("line"); // Get the line from the URL
+
+    if (departureStation && departureLine) {
+        // Set the correct line dynamically
+        document.getElementById("departure-line").value = departureLine;
+        
+        // Trigger change event to populate stations dropdown
+        document.getElementById("departure-line").dispatchEvent(new Event("change"));
+
+        // Delay selecting the station to ensure dropdown is populated
+        setTimeout(() => {
+            document.getElementById("departure").value = departureStation;
+        }, 500);
+    highlightStationOnMap(departureStation);
+    }
+});
+
+
+function highlightStationOnMap(stationName) {
+    // Check if station exists in coordinates data
+    if (stationCoordinates[stationName]) {
+        const coords = stationCoordinates[stationName];
+
+        // Create a marker for the station and open a popup
+        const marker = L.marker(coords).addTo(map);
+        marker.bindPopup(`<b>${stationName}</b><br>Selected Station`).openPopup();
+
+        // Center the map on the selected station
+        map.setView(coords, 14);
+    }
+}
