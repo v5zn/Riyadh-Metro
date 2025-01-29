@@ -328,8 +328,8 @@
     <div class="container">
         <div class="header">
             <h1>Orange Line</h1>
-            <p>Line starts at: Jeddah Road <span class="direction-arrow"><i class="fas fa-arrows-alt-h"></i></span> Line ends at: Khashm Al-An</p>
-            <p>22 Stations</p>
+            <p>Line starts at: Jeddah Road <span class="direction-arrow"><i class="fas fa-arrows-alt-h"></i></span> Line ends at: An Naseem</p>
+            <p>9 Stations</p>
         </div>
 
         <div id="timer" class="timer"></div>
@@ -343,7 +343,7 @@
     <div id="tail">
 
         <div id="third">
-            <p>Download darb app now!</p>
+            <p>Download Darb app now!</p>
             <div>
                 <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
                 <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
@@ -353,7 +353,7 @@
         <div id="second">
             <div id="t3"> 
                 <a href="line.html"><button class="buttons2">Metro lines</button></a>
-                <a href="Paths.html"><button class="buttons2">Plan your journy</button></a>
+                <a href="Paths.html"><button class="buttons2">Plan your journey</button></a>
                 <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
             </div>
 
@@ -378,11 +378,15 @@
 
     <script>
         const stations = [
-            "Jeddah Road", "Station 2", "Station 3", "Station 4",
-            "Station 5", "Station 6", "Station 7", "Station 8", "Station 9",
-            "Qasr Al-Hukm", "Station 11", "Station 12", "Station 13", "Station 14",
-            "Station 15", "Station 16", "Station 17", "Station 18", "Station 19", "Al-Naseem",
-            "Station 21", "Khashm Al-An"
+            "Jeddah Road",
+            "Tuwaiq",
+            "Ad Douh",
+            "Dhahrat Al Badiah",
+            "Al Jarradiyah",
+            "Al Hilla",
+            "First Industrial City",
+            "Harun Ar Rashid Road",
+            "An Naseem"
         ];
         const stopDuration = 90 * 1000;
         const waitDuration = 5 * 60 * 1000;
@@ -479,7 +483,7 @@
                             This station intersects with the <a href="purple.html" style="color: #800080;">Purple Line</a>.
                         </div>
                     ` : ''}
-                    <button class="map-btn">
+                    <button class="map-btn" onclick="redirectToPathPage('${station}')">
                         <i class="fas fa-map-marker-alt"></i>
                         View Location
                     </button>
@@ -488,6 +492,13 @@
 
             return div;
         }
+        function redirectToPathPage(stationName) {
+            const encodedStation = encodeURIComponent(stationName);
+            const departureLine = "line3"; // Orange Line
+
+            // Open path.html in a new tab with both station and line parameters
+            window.open(`path.html?departure=${encodedStation}&line=${departureLine}`, "_blank");
+}
 
         function updateTrainTimes() {
             updateArrivedTrains();
