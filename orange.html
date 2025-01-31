@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purple Line - Riyadh Metro</title>
+    <title>Orange Line - Riyadh Metro</title>
     <link rel="icon" href="Pics/1..png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -18,6 +18,7 @@
         body {
             background: #f0f6ff;
             min-height: 100vh;
+
         }
 
         .container {
@@ -27,7 +28,7 @@
         }
 
         .header {
-            background: #800080;
+            background: #FFA500;
             color: white;
             padding: 20px;
             border-radius: 15px;
@@ -101,7 +102,7 @@
             display: inline-block;
             width: 30px;
             height: 30px;
-            background: #800080;
+            background: #FFA500;
             color: white;
             border-radius: 50%;
             text-align: center;
@@ -140,7 +141,7 @@
         }
 
         .info-btn {
-            background: #800080;
+            background: #FFA500;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -151,7 +152,7 @@
         }
 
         .info-btn:hover {
-            background: #6a006a;
+            background: #cc8400;
         }
 
         .close-btn {
@@ -205,6 +206,10 @@
         #Pic img {
             height: 100%;
             margin-right: 10px;
+        }
+
+        #acc img {
+            height: 50px;
         }
 
         #tail{
@@ -305,8 +310,8 @@
                 <a href="blue.html">Blue Line</a>
                 <a href="green.html">Green Line</a>
                 <a href="red.html">Red Line</a>
+                <a href="purple.html">Purple Line</a>
                 <a href="yellow.html">Yellow Line</a>
-                <a href="orange.html">Orange Line</a>
             </div>
         </div>
         <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
@@ -322,9 +327,9 @@
 
     <div class="container">
         <div class="header">
-            <h1>Purple Line</h1>
-            <p>Line starts at: KAFD <span class="direction-arrow"><i class="fas fa-arrows-alt-h"></i></span> Line ends at: Al-Naseem</p>
-            <p>11 Stations</p>
+            <h1>Orange Line</h1>
+            <p>Line starts at: Jeddah Road <span class="direction-arrow"><i class="fas fa-arrows-alt-h"></i></span> Line ends at: An Naseem</p>
+            <p>9 Stations</p>
         </div>
 
         <div id="timer" class="timer"></div>
@@ -372,19 +377,18 @@
     </div>
 
     <script>
-const stations = [
-    "KAFD",
-    "Ar Rabi",
-    "Uthman Bin Affan Road",
-    "SABIC",
-    "Grandia",
-    "Al Yarmuk",
-    "Al Hamra",
-    "Al Andalus",
-    "Khurais Road",
-    "As Salam",
-    "An Naseem"
-];        const stopDuration = 90 * 1000;
+        const stations = [
+            "Jeddah Road",
+            "Tuwaiq",
+            "Ad Douh",
+            "Dhahrat Al Badiah",
+            "Al Jarradiyah",
+            "Al Hilla",
+            "First Industrial City",
+            "Harun Ar Rashid Road",
+            "An Naseem"
+        ];
+        const stopDuration = 90 * 1000;
         const waitDuration = 5 * 60 * 1000;
         const cycleDuration = stopDuration + waitDuration;
         const startHour = 6;
@@ -467,6 +471,18 @@ const stations = [
                 <div class="station-info" id="info-${index}">
                     <div class="next-train" id="next-train-${index}">
                     </div>
+                    ${stationNumber === 10 ? `
+                        <div class="next-train">
+                            <i class="fas fa-exchange-alt"></i>
+                            This station intersects with the <a href="blue.html" style="color: #0072bc;">Blue Line</a>.
+                        </div>
+                    ` : ''}
+                    ${stationNumber === 20 ? `
+                        <div class="next-train">
+                            <i class="fas fa-exchange-alt"></i>
+                            This station intersects with the <a href="purple.html" style="color: #800080;">Purple Line</a>.
+                        </div>
+                    ` : ''}
                     <button class="map-btn" onclick="redirectToPathPage('${station}')">
                         <i class="fas fa-map-marker-alt"></i>
                         View Location
@@ -478,10 +494,10 @@ const stations = [
         }
         function redirectToPathPage(stationName) {
             const encodedStation = encodeURIComponent(stationName);
-            const departureLine = "line6"; // Purple Line
+            const departureLine = "line3"; // Orange Line
 
             // Open path.html in a new tab with both station and line parameters
-            window.open(`Paths.html?departure=${encodedStation}&line=${departureLine}`, "_blank");
+            window.open(`path.html?departure=${encodedStation}&line=${departureLine}`, "_blank");
 }
 
         function updateTrainTimes() {
