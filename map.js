@@ -164,22 +164,22 @@ function goToStationInfo(stationName) {
     // Redirect to the corresponding page based on the line
     switch (lineName) {
         case '1(Blue)':
-            window.location.href = `https://riyadhmetro.site/blue.html`;
+            window.location.href = `blue.html`;
             break;
         case '3(Orange)':
-            window.location.href = `https://riyadhmetro.site/orange.html`;
+            window.location.href = `orange.html`;
             break;
         case '5(Green)':
-            window.location.href = `https://riyadhmetro.site/green.html`;
+            window.location.href = `green.html`;
             break;
         case '6(Purple)':
-            window.location.href = `https://riyadhmetro.site/purple.html`;
+            window.location.href = `purple.html`;
             break;
         case '4(Yellow)':
-            window.location.href = `https://riyadhmetro.site/yellow.html`;
+            window.location.href = `yellow.html`;
             break;
         case '2(Red)':
-            window.location.href = `https://riyadhmetro.site/red.html`;
+            window.location.href = `red.html`;
             break;
         default:
             console.log('Line not found for station.');
