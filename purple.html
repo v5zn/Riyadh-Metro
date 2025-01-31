@@ -338,7 +338,7 @@
     <div id="tail">
 
         <div id="third">
-            <p>Download darb app now!</p>
+            <p>Download Darb app now!</p>
             <div>
                 <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
                 <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
@@ -348,7 +348,7 @@
         <div id="second">
             <div id="t3"> 
                 <a href="line.html"><button class="buttons2">Metro lines</button></a>
-                <a href="Paths.html"><button class="buttons2">Plan your journy</button></a>
+                <a href="Paths.html"><button class="buttons2">Plan your journey</button></a>
                 <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
             </div>
 
@@ -467,7 +467,7 @@ const stations = [
                 <div class="station-info" id="info-${index}">
                     <div class="next-train" id="next-train-${index}">
                     </div>
-                    <button class="map-btn">
+                    <button class="map-btn" onclick="redirectToPathPage('${station}')">
                         <i class="fas fa-map-marker-alt"></i>
                         View Location
                     </button>
@@ -476,6 +476,13 @@ const stations = [
 
             return div;
         }
+        function redirectToPathPage(stationName) {
+            const encodedStation = encodeURIComponent(stationName);
+            const departureLine = "line6"; // Purple Line
+
+            // Open path.html in a new tab with both station and line parameters
+            window.open(`Paths.html?departure=${encodedStation}&line=${departureLine}`, "_blank");
+}
 
         function updateTrainTimes() {
             updateArrivedTrains();
