@@ -308,32 +308,44 @@
 
         .password-container {
             position: relative;
-            width: 62%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .password-container input {
-            width: 90%;
-            padding: 11px 20px;
-            font-size: 16px;
+            width: 50%;  
+            padding: 12px 20px;  
+            margin: 10px;  
+            font-size: 14px;
             border: 1px solid #ddd;
-            border-radius: 1px;
+            border-radius: 8px;
             background-color: #e9efe9;
-            margin-left: -0.5%;
-            padding-right: 0;
+            outline: none;
+            transition: border 0.3s ease;
         }
 
         .eye-icon {
             position: absolute;
-            right: 10px;
+            right: 26.5%;  
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            font-size: 20px;
-            color: #262323;
+            font-size: 20px;  
+            color: #999;
+            transition: color 0.3s ease;
+            z-index: 2;
+            padding: 0 5px;
         }
 
         .eye-icon.active {
             color: #21a953;
+        }
+
+        .password-container input:focus {
+            border-color: #21a953;
+            box-shadow: 0 0 8px rgba(33, 169, 83, 0.5);
         }
 
         .button-container {
@@ -448,7 +460,7 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Registration has been successfully completed ");
+            alert("Registration has been successfully completed ,now you can login");
             document.getElementById("container").classList.remove("active"); 
         } else {
             alert("Registration error  " + data.message);
@@ -484,9 +496,14 @@ document.getElementById("signup-form").addEventListener("submit", function(e) {
         function togglePasswordVisibility(passwordFieldId, eyeIconId) {
             const passwordField = document.getElementById(passwordFieldId);
             const eyeIcon = document.getElementById(eyeIconId);
-            const type = passwordField.type === "password" ? "text" : "password";
-            passwordField.type = type;
-            eyeIcon.classList.toggle("active", type === "text");
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.add('active');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('active');
+            }
         }
 
         document.getElementById("register").addEventListener("click", () => {
@@ -497,8 +514,12 @@ document.getElementById("log-in").addEventListener("click", () => {
     document.getElementById("container").classList.remove("active");
 });
 
-        document.getElementById("toggle-signup-password").addEventListener("click", () => {
+        document.getElementById("toggle-signup-password").addEventListener("click", function() {
             togglePasswordVisibility("signup-password", "toggle-signup-password");
+        });
+
+        document.getElementById("toggle-login-password").addEventListener("click", function() {
+            togglePasswordVisibility("login-password", "toggle-login-password");
         });
 
         document.getElementById("forgot-password").addEventListener("click", (e) => {
