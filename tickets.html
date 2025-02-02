@@ -1,19 +1,265 @@
+<!DOCTYPE html>
 <html>
     <head>
-
-        <title>Tickets</title>
+        <title>Riyadh Metro - Tickets</title>
         <link rel="icon" href="Pics/1..png">
         <link rel="stylesheet" href="RiyadhMetro.css">
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <style>
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 80%;
+                margin: 10px auto;
+                display: block;
+            }
+
+            .tktbtn:hover {
+                background-color: #188740;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .price:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .payment-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .payment-content {
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                width: 90%;
+                max-width: 400px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-details input {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+            }
+
+            .card-info {
+                display: flex;
+                gap: 10px;
+            }
+
+            .pay-button {
+                background: #21a953;
+                color: white;
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                margin-top: 20px;
+                cursor: pointer;
+            }
+
+            .cancel-button {
+                background: #dc3545;
+                color: white;
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+
+            .admin-controls {
+                margin-top: 10px;
+                padding: 10px;
+                background: #f5f5f5;
+                border-radius: 4px;
+            }
+
+            .admin-controls input {
+                width: 80px;
+                padding: 5px;
+                margin-right: 5px;
+            }
+
+            .admin-controls button {
+                background: #21a953;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                margin: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .price:hover {
+                transform: translateY(-5px);
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            .tktbtn:hover {
+                background-color: #188740;
+            }
+
+            #prices {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                width: 100%;
+                margin: 0;
+                transition: transform 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .price img {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                margin-bottom: 15px;
+            }
+
+            .price h3 {
+                font-size: 20px;
+                color: #072211;
+                margin: 10px 0;
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 80%;
+                margin-top: auto;
+            }
+
+            @media (max-width: 768px) {
+                #prices {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    padding: 10px;
+                }
+            }
+        </style>
     </head>
     <body>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <div id="head">
-            <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
-            <a href="line.html" id="a"><button class="buttons">Lines</button></a>
-            <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
-            <a href="About.html" id="a"><button class="buttons">About</button></a>
-            <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
+            <a href="tickets.html"><button class="buttons">Tickets</button></a>
+            <a href="line.html"><button class="buttons">Lines</button></a>
+            <a href="Paths.html"><button class="buttons">Paths</button></a>
+            <a href="About.html"><button class="buttons">About</button></a>
+            <a href="Contact.html"><button class="buttons">Contact</button></a>
             
             <div class="dropdown">
                 <button class="dropbtn">Menu</button>
@@ -26,103 +272,213 @@
                 </div>
             </div>
             <div id="Pic">
-                <a href="index.html">
-                    <img src="Pics/drb.png" style="height: 100px;">
-                </a>
+                <a href="index.html"><img src="Pics/drb.png" style="height: 100px;"></a>
                 <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
             </div>
-
         </div>
 
         <div id="main">
-
             <div id="tkt1">
                 <img src="Pics/tickets.jpg" id="tktk">
                 <p id="tkt2">Tickets</p>
             </div>
             
-            <br> 
             <div id="buy">
                 <p>Buy Tickets:</p>
                 <div id="prices">
-                    <div id="prices">
-                        <div class="price">
-                            <img src="Pics/ticket1.png" class="hover-img">
-                            <p>2 Hours pass</p>
-                            <p>4 SAR</p>
-                            <button id="tktbtn">Buy Ticket</button>
-                        </div>
-                        <div class="price">
-                            <img src="Pics/ticket1.png" class="hover-img">
-                            <p>3 Days pass </p>
-                            <p>20 SAR</p>
-                            <button id="tktbtn">Buy Ticket</button>
-                        </div>
-                        <div class="price">
-                            <img src="Pics/ticket1.png" class="hover-img">
-                            <p>7 Days pass</p>
-                            <p>40 SAR</p>
-                            <button id="tktbtn">Buy Ticket</button>
-                        </div>
-                        <div class="price">
-                            <img src="Pics/ticket1.png" class="hover-img">
-                            <p>30 Days pass</p>
-                            <p>140 SAR</p>
-                            <button id="tktbtn">Buy Ticket</button>
-                        </div>
-                    </div>
+                    <!-- Tickets will be loaded dynamically -->
                 </div>
 
-                <p style="margin-bottom: 30px; margin-top: 100px;">Discounted Fares:</p>
-                <p style="font-size: 20px;margin-bottom:60px;">If you fit one of the categories below, you may be eligible to receive a discounted fare card. It entitles you to ride for half price.</p>
-
+                <p style="margin: 30px 0 100px;">Discounted Fares:</p>
                 <div>
                     <button class="btn">Students</button>
                     <button class="btn">Seniors</button>
                     <button class="btn">People with Disabilities</button>
                     <button class="btn">Cancer patients</button>
-                    <button class="btn">Martyrs’ first-degree relatives</button>
+                    <button class="btn">Martyrs’ relatives</button>
                 </div>
-
             </div>
-
         </div>
 
-        <div id="tail">
+        <script>
+            function checkUserAndPurchase(type, price, duration) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (!user) {
+                    alert('Please login first to purchase tickets');
+                    window.location.href = 'login.html';
+                    return;
+                }
 
-            <div id="third">
-                <p>Download darb app now!</p>
-                <div>
-                    <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739"><img src="Pics/as.png" id="pi"></a>
-                    <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner"><img src="Pics/gp.png" id="pi"></a>
+                const ticketData = {
+                    type: type,
+                    price: price,
+                    duration: duration,
+                    userId: user.id
+                };
+                
+                localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+                window.location.href = 'payment.html'; 
+            }
+
+            // تعديل دالة loadTicketPrices
+            function loadTicketPrices() {
+                console.log("Starting to load ticket prices...");
+                const pricesContainer = document.getElementById('prices');
+                pricesContainer.innerHTML = '<p>Loading tickets...</p>';
+
+                // إضافة التذاكر بشكل ثابت إذا فشل الاتصال بالخادم
+                const defaultTickets = [
+                    { type: '2 Hours pass', price: 4.00, duration: '2 hours' },
+                    { type: '3 Days pass', price: 20.00, duration: '3 days' },
+                    { type: '7 Days pass', price: 40.00, duration: '7 days' },
+                    { type: '30 Days pass', price: 140.00, duration: '30 days' }
+                ];
+
+                fetch('http://localhost:3000/ticket-prices')
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Received data:", data);
+                        const tickets = data.success && data.prices && data.prices.length > 0 
+                            ? data.prices 
+                            : defaultTickets;
+                        
+                        pricesContainer.innerHTML = tickets.map(ticket => `
+                            <div class="price">
+                                <img src="Pics/ticket1.png" class="hover-img">
+                                <h3>${ticket.type}</h3>
+                                <p class="ticket-duration">Valid for: ${ticket.duration}</p>
+                                <p class="ticket-price">${ticket.price} SAR</p>
+                                <button class="tktbtn" onclick="checkUserAndPurchase('${ticket.type}', ${ticket.price}, '${ticket.duration}')">
+                                    Buy Ticket
+                                </button>
+                            </div>
+                        `).join('');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // استخدام التذاكر الافتراضية في حالة الخطأ
+                        pricesContainer.innerHTML = defaultTickets.map(ticket => `
+                            <div class="price">
+                                <img src="Pics/ticket1.png" class="hover-img">
+                                <h3>${ticket.type}</h3>
+                                <p class="ticket-duration">Valid for: ${ticket.duration}</p>
+                                <p class="ticket-price">${ticket.price} SAR</p>
+                                <button class="tktbtn" onclick="checkUserAndPurchase('${ticket.type}', ${ticket.price}, '${ticket.duration}')">
+                                    Buy Ticket
+                                </button>
+                            </div>
+                        `).join('');
+                    });
+            }
+
+            // تأكد من استدعاء الدالة عند تحميل الصفحة
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log("Page loaded, calling loadTicketPrices");
+                loadTicketPrices();
+            });
+
+            // Update the checkAdmin function
+            function checkAdmin() {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    fetch('http://localhost:3000/check-admin', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: user.email })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.isAdmin) {
+                            document.querySelectorAll('.admin-controls').forEach(el => {
+                                el.style.display = 'block';
+                            });
+                        }
+                    });
+                }
+            }
+
+            // Update the updatePrice function
+            function updatePrice(button) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const type = button.dataset.type;
+                const price = button.previousElementSibling.value;
+
+                if (!price || price < 1) {
+                    alert('Please enter a valid price');
+                    return;
+                }
+
+                fetch('http://localhost:3000/update-ticket-price', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: user.email,
+                        type: type,
+                        price: parseFloat(price)
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Price updated successfully');
+                        loadTicketPrices(); // Reload prices after update
+                    } else {
+                        alert('Failed to update price');
+                    }
+                });
+            }
+
+            // Call loadTicketPrices when page loads            document.addEventListener('DOMContentLoaded', loadTicketPrices);
+        </script>
+
+        <footer>
+            <div id="tail">
+                <div id="third">
+                    <p>Download darb app now!</p>
+                    <div>
+                        <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739">
+                            <img src="Pics/as.png" id="pi">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner">
+                            <img src="Pics/gp.png" id="pi">
+                        </a>
+                    </div>
+                </div>
+                <div id="second">
+                    <div id="t3"> 
+                        <a href="line.html"><button class="buttons2">Metro lines</button></a>
+                        <a href="Paths.html"><button class="buttons2">Plan your journey</button></a>
+                        <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
+                    </div>
+                    <div id="t3">
+                        <a href="About.html"><button class="buttons2">About the metro</button></a>
+                        <a href="Contact.html"><button class="buttons2">Contact us</button></a>
+                    </div>
+                </div>
+                <div id="first">
+                    <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+                    <div id="t2">
+                        <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w">
+                            <img src="Pics/youtube.png" id="sm">
+                        </a>
+                        <a href="https://www.linkedin.com/company/riyadhtransport/">
+                            <img src="Pics/linkedin.png" id="sm">
+                        </a>
+                        <a href="https://www.facebook.com/riyadhtransport">
+                            <img src="Pics/facebook.png" id="sm">
+                        </a>
+                        <a href="https://www.instagram.com/riyadhtransport/">
+                            <img src="Pics/instagram.png" id="sm">
+                        </a>
+                        <a href="https://x.com/RiyadhTransport">
+                            <img src="Pics/twitter.png" id="sm">
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <div id="second">
-                <div id="t3"> 
-                    <a href="line.html"><button class="buttons2">Metro lines</button></a>
-                    <a href="Paths.html"><button class="buttons2">Plan your journy</button></a>
-                    <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
-                </div>
-
-                <div id="t3">
-                    <a href="About.html"><button class="buttons2">About the metro</button></a>
-                    <a href="Contact.html"><button class="buttons2">Contact us</button></a>
-                </div>
-            </div>
-
-            <div id="first">
-                <div id="t1"><img src="Pics/drb.png" id="drb"></div>
-                <div id="t2">
-                    <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w/community?pvf=CAI%253D"><img src="Pics/youtube.png" id="sm"></a>
-                    <a href="https://www.linkedin.com/company/riyadhtransport/"><img src="Pics/linkedin.png" id="sm"></a>
-                    <a href="https://www.facebook.com/riyadhtransport"><img src="Pics/facebook.png" id="sm"></a>
-                    <a href="https://www.instagram.com/riyadhtransport/"><img src="Pics/instagram.png" id="sm"></a>
-                    <a href="https://x.com/RiyadhTransport"><img src="Pics/twitter.png" id="sm"></a>
-                </div>
-            </div>
-
-        </div>
-
+        </footer>
     </body>
 </html>
