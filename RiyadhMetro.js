@@ -16,18 +16,30 @@ function topFunction() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (user) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const usernameDisplay = document.getElementById("username-display");
+    const usernameLink = document.getElementById("username-link");
     
-      document.getElementById("username-display").textContent = user.username;
-      document.getElementById("username-link").href = "account.html"; 
-  } else {
-      document.getElementById("username-link").href = "login.html";
-  }
+    if (user) {
+        if (usernameDisplay) {
+            usernameDisplay.textContent = user.username;
+        }
+        if (usernameLink) {
+            usernameLink.href = "account.html";
+        }
+    } else {
+        if (usernameLink) {
+            usernameLink.href = "login.html";
+        }
+    }
+
+   
+    if (window.location.pathname.includes('index.html')) {
+        loadActiveTickets();
+    }
 });
 
 function logout() {
   localStorage.removeItem("user");
   window.location.href = "index.html";
 }
-
