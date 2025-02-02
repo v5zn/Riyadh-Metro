@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riyadh Metro - My Account</title>
     <link rel="icon" href="Pics/1..png">
-    <base target="_blank">
     <link rel="stylesheet" href="RiyadhMetro.css">
     <style>
 
@@ -92,15 +91,426 @@
             background-color: #ee1b14;
         }
 
+        .ticket-history {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .ticket-table th, .ticket-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .ticket-table th {
+            background-color: #21a953;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .ticket-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ticket-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .status-active {
+            color: #21a953;
+            font-weight: bold;
+        }
+
+        .status-expired {
+            color: #999;
+        }
+
+        .ticket-card-details {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-info-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-info-box h3 {
+            color: #21a953;
+            margin-bottom: 10px;
+        }
+
+        .ticket-info-box p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        #ticket-barcode {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .ticket-box {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .close-ticket-btn {
+            width: 100%;
+            background-color: #21a953;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #ticket-barcode {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .ticket-details-box {
+            background: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .close-ticket-btn {
+            width: 100%;
+            background-color: #21a953;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #ticket-barcode {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .ticket-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #21a953;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #ticket-barcode {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+        }
+        .account-container {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* تغيير من 3 إلى 2 أعمدة */
+    gap: 20px;
+}
+
+.ticket-history-container {
+    grid-column: 1 / -1;  /* جعل ticket history تمتد على كامل العرض */
+    margin-top: 20px;
+}
+
+.personal-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#admin-panel {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.ticket-history {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+/* تحسين مظهر الجدول */
+.ticket-table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.ticket-table th {
+    background-color: #21a953;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.ticket-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ... rest of existing styles ... */
+
+/* تعديل زر Logout */
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* تعديل أيقونة العين */
+.password-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding: 8px 35px 8px 12px; /* زيادة المسافة على اليمين لأيقونة العين */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.eye-icon:hover {
+    color: #21a953;
+}
+
+/* تعديل مربع الإعلان والتاريخ */
+#announcement-text {
+    width: 100%;
+    min-height: 150px; /* زيادة ارتفاع مربع النص */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+#announcement-expiry {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.create-announcement-btn {
+    width: 100%;
+    background-color: #21a953;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.create-announcement-btn:hover {
+    background-color: #188740;
+}
+.price-controls {
+    margin-top: 20px;
+}
+
+.price-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-item input {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.price-item button {
+    background: #21a953;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.price-item button:hover {
+    background: #188740;
+}
     </style>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
 <body>
     <div id="head">
-        <a href="tickets.html" id="a"><button class="buttons" id="Tickets">Tickets</button></a>
-        <a href="line.html" id="a"><button class="buttons">Lines</button></a>
-        <a href="Paths.html" id="a"><button class="buttons">Paths</button></a>
-        <a href="About.html" id="a"><button class="buttons">About</button></a>
-        <a href="Contact.html" id="a"><button class="buttons">Contact</button></a>
+        <a href="tickets.html"><button class="buttons">Tickets</button></a>
+        <a href="line.html"><button class="buttons">Lines</button></a>
+        <a href="Paths.html"><button class="buttons">Paths</button></a>
+        <a href="About.html"><button class="buttons">About</button></a>
+        <a href="Contact.html"><button class="buttons">Contact</button></a>
         
         <div class="dropdown">
             <button class="dropbtn">Menu</button>
@@ -120,49 +530,138 @@
         </div>
 
     </div>
-    <div class="form-container">
-        <h1>Personal Information</h1>
-        <form>
-            <div style="margin: 5px;" class="info-row">
-                
-                <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" placeholder=" " readonly>
-                <span class="change-button" onclick="showEditBox('full-name')">Change</span>
-                <div id="edit-full-name" class="edit-box">
-                    <h2>Change Name</h2>
-                    <input type="text" id="edit-full-name-input" placeholder="Enter new name">
-                    <button type="button" onclick="updateValue('full-name', 'edit-full-name-input', event)">Update</button>
-                    <button type="button" class="close" onclick="closeEditBox('edit-full-name')">Close</button>
+    <div class="account-container">
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <form>
+                <div class="info-row">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" readonly>
+                    <span class="change-button" onclick="showEditBox('full-name')">Change</span>
                 </div>
-                <br>
-    
-            
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder=" " readonly>
-                <span class="change-button" onclick="showEditBox('email')">Change</span>
-                <div id="edit-email" class="edit-box">
-                    <h2>Change Email</h2>
-                    <input type="email" id="edit-email-input" placeholder="Enter new email">
-                    <button type="button" onclick="updateValue('email', 'edit-email-input', event)">Update</button>
-                    <button type="button" class="close" onclick="closeEditBox('edit-email')">Close</button>
+
+                <div class="info-row">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" readonly>
+                    <span class="change-button" onclick="showEditBox('email')">Change</span>
                 </div>
-                <br>
-    
-              
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder=" " readonly>
-                <span class="change-button" onclick="showEditBox('password')">Change</span>
-                <div id="edit-password" class="edit-box">
-                    <h2>Change Password</h2>
-                    <input type="password" id="edit-password-input" placeholder="Enter new password">
-                    <button type="button" onclick="updateValue('password', 'edit-password-input', event)">Update</button>
-                    <button type="button" class="close" onclick="closeEditBox('edit-password')">Close</button>
+
+                <div class="info-row">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" readonly>
+                        <span id="toggle-password" class="eye-icon">👁️</span>
+                    </div>
+                    <span class="change-button" onclick="showEditBox('password')">Change</span>
                 </div>
-                <br>
+
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </form>
+        </div>
+        <div id="admin-panel" style="display: none;">
+    <h2>Admin Panel</h2>
+    <div class="admin-section">
+        <!-- Existing announcement section -->
+        <div class="announcement-section">
+            <h3>Create Announcement</h3>
+            <textarea id="announcement-text" placeholder="Write your announcement here..."></textarea>
+            <input type="datetime-local" id="announcement-expiry">
+            <button onclick="createAnnouncement()" class="create-announcement-btn">Create Announcement</button>
+        </div>
+
+        <!-- New ticket prices section -->
+        <div class="ticket-prices-section">
+            <h3>Manage Ticket Prices</h3>
+            <div class="price-controls">
+                <div class="price-item">
+                    <label>2 Hours Pass Price:</label>
+                    <input type="number" id="price-2hours" min="0" step="0.5">
+                    <button onclick="updateTicketPrice('2 Hours pass', 'price-2hours')">Update</button>
+                </div>
+                <div class="price-item">
+                    <label>3 Days Pass Price:</label>
+                    <input type="number" id="price-3days" min="0" step="0.5">
+                    <button onclick="updateTicketPrice('3 Days pass', 'price-3days')">Update</button>
+                </div>
+                <div class="price-item">
+                    <label>7 Days Pass Price:</label>
+                    <input type="number" id="price-7days" min="0" step="0.5">
+                    <button onclick="updateTicketPrice('7 Days pass', 'price-7days')">Update</button>
+                </div>
+                <div class="price-item">
+                    <label>30 Days Pass Price:</label>
+                    <input type="number" id="price-30days" min="0" step="0.5">
+                    <button onclick="updateTicketPrice('30 Days pass', 'price-30days')">Update</button>
+                </div>
             </div>
-        </form>
-    
-        <button onclick="logout()" style="font-size: 14px; font-weight: 560; margin: 5px; border-radius: 5px; background-color: #ee1b14; color: #fff; padding: 5px 10px;">Logout</button>
+        </div>
+    </div>
+</div>
+
+    <div class="ticket-history-container">
+        <div class="ticket-history">
+            <h2>Ticket History</h2>
+            <table class="ticket-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ticket Type</th>
+                        <th>Status</th>
+                        <th>Purchase Date</th>
+                        <th>Expiry Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ticket-history-container">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+        <div id="edit-full-name" class="edit-box">
+            <h2>Change Full Name</h2>
+            <form onsubmit="updateValue('full-name', 'new-name'); return false;">
+                <input type="text" id="new-name" placeholder="Enter new name" required>
+                <div class="button-container">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="closeEditBox('edit-full-name')" class="close">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="edit-email" class="edit-box">
+            <h2>Change Email</h2>
+            <form onsubmit="updateValue('email', 'new-email'); return false;">
+                <input type="email" id="new-email" placeholder="Enter new email" required>
+                <div class="button-container">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="closeEditBox('edit-email')" class="close">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="edit-password" class="edit-box">
+            <h2>Change Password</h2>
+            <form onsubmit="updateValue('password', 'new-password'); return false;">
+                <input type="password" id="new-password" placeholder="Enter new password" required>
+                <div class="button-container">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="closeEditBox('edit-password')" class="close">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-ticket">&times;</span>
+            <h2>Ticket Details</h2>
+            <div class="ticket-details-container">
+                <div id="ticket-details"></div>
+                <div id="ticket-barcode" class="barcode-container"></div>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -248,7 +747,6 @@ function updateValue(fieldId, inputId) {
     event.preventDefault();
     const inputField = document.getElementById(fieldId);
     const editInput = document.getElementById(inputId);
-    const oldValue = inputField.value;
     const newValue = editInput.value;
 
     if (!newValue.trim()) {
@@ -257,33 +755,40 @@ function updateValue(fieldId, inputId) {
     }
 
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-        const key = fieldId === 'full-name' ? 'username' : fieldId;
-        user[key] = newValue;
-        localStorage.setItem("user", JSON.stringify(user));
-        inputField.value = newValue;
+    if (!user) return;
 
-        fetch("http://localhost:3000/update", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId: user.id, field: key, value: newValue }),
+    const field = fieldId === 'full-name' ? 'username' : fieldId;
+
+    fetch("http://localhost:3000/update", {
+        method: "POST",
+        headers: { 
+            "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({
+            userId: user.id,
+            field: field,
+            value: newValue
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("The update was successfully completed !");
-                closeEditBox(`edit-${fieldId}`);
-            } else {
-                inputField.value = oldValue;
-                alert("Update failed!");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            inputField.value = oldValue;
-            alert("Update failed!");
-        });
-    }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            inputField.value = newValue;
+            
+            if (field === 'username') user.username = newValue;
+            if (field === 'email') user.email = newValue;
+            if (field === 'password') user.password = newValue;
+            localStorage.setItem("user", JSON.stringify(user));
+
+            closeEditBox(`edit-${fieldId}`);
+            alert("Updated successfully!");
+        } else {
+            throw new Error(data.message || "Update failed");
+        }
+    })
+    .catch(error => {
+        alert("Error updating: " + error.message);
+    });
 }
 document.addEventListener("DOMContentLoaded", function() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -295,6 +800,397 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "login.html";
     }
 });
+
+    function loadTicketHistory() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) return;
+
+        const container = document.getElementById('ticket-history-container');
+        container.innerHTML = '<tr><td colspan="6">Loading tickets...</td></tr>';
+
+        fetch(`http://localhost:3000/user-tickets/${user.id}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.tickets.length > 0) {
+                    container.innerHTML = data.tickets.map((ticket, index) => {
+                        const isExpired = new Date(ticket.end_time) < new Date();
+                        const status = isExpired ? 'Expired' : 'Active';
+                        const statusClass = isExpired ? 'status-expired' : 'status-active';
+                        
+                        return `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${ticket.ticket_type}</td>
+                                <td class="${statusClass}">${status}</td>
+                                <td>${formatDate(ticket.start_time)}</td>
+                                <td>${formatDate(ticket.end_time)}</td>
+                                <td>
+                                    <button onclick='showTicketDetails(${JSON.stringify(ticket)})' class="view-details-btn">
+                                        View Details
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = '<tr><td colspan="6">No tickets found</td></tr>';
+                }
+            })
+            .catch(error => {
+                console.error("Error loading tickets:", error);
+                container.innerHTML = '<tr><td colspan="6">Error loading tickets. Please try again.</td></tr>';
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTicketHistory();
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('refresh')) {
+            window.history.replaceState({}, '', window.location.pathname);
+            setTimeout(loadTicketHistory, 1000);
+        }
+    });
+
+    function showTicketDetails(ticket) {
+        const modal = document.getElementById('ticket-modal');
+        const details = document.getElementById('ticket-details');
+        const barcodeDiv = document.getElementById('ticket-barcode');
+        
+        details.innerHTML = '';
+        barcodeDiv.innerHTML = '';
+        
+        details.innerHTML = `
+            <div class="ticket-info">
+                <h3>User Information</h3>
+                <p><strong>Username:</strong> ${ticket.username}</p>
+                <p><strong>Email:</strong> ${ticket.email}</p>
+
+                <h3>Ticket Information</h3>
+                <p><strong>Ticket Number:</strong> ${ticket.ticket_number}</p>
+                <p><strong>Type:</strong> ${ticket.ticket_type}</p>
+                <p><strong>Price:</strong> ${ticket.price} SAR</p>
+                <p><strong>Purchase Date:</strong> ${formatDate(ticket.start_time)}</p>
+                <p><strong>Expiry Date:</strong> ${formatDate(ticket.end_time)}</p>
+                <p><strong>Status:</strong> 
+                    <span class="${new Date(ticket.end_time) > new Date() ? 'status-active' : 'status-expired'}">
+                        ${new Date(ticket.end_time) > new Date() ? 'Active' : 'Expired'}
+                    </span>
+                </p>
+            </div>
+        `;
+        
+        try {
+            new QRCode(barcodeDiv, {
+                text: ticket.ticket_number,
+                width: 128,
+                height: 128,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        } catch (error) {
+            console.error('QR Code generation error:', error);
+            barcodeDiv.innerHTML = '<p>Unable to generate QR code at this time.</p>';
+        }
+        
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('ticket-modal').style.display = "none";
+    }
+
+    document.querySelector('.close-ticket').onclick = closeModal;
+    window.onclick = function(event) {
+        const modal = document.getElementById('ticket-modal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTicketHistory();
+    });
+
+    document.querySelector('.close-ticket').onclick = function() {
+        document.getElementById('ticket-modal').style.display = "none";
+    }
+
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        const eyeIcon = document.querySelector('.eye-icon');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            eyeIcon.textContent = '👁️';
+            eyeIcon.style.color = '#21a953';
+        } else {
+            passwordField.type = 'password';
+            eyeIcon.textContent = '👁️';
+            eyeIcon.style.color = '#666';
+        }
+    }
+
+    function formatDate(dateStr) {
+    // إجبار استخدام التنسيق الإنجليزي
+    return new Date(dateStr).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Riyadh',
+        numberingSystem: 'latn',
+        calendar: 'gregory'
+    }).replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660) // تحويل الأرقام العربية إلى إنجليزية
+     .replace(/،/g, ',') // استبدال الفاصلة العربية
+     .replace(/[\u06f0-\u06f9]/g, d => d.charCodeAt(0) - 0x06f0); // تحويل الأرقام الفارسية إلى إنجليزية
+}
+
+function updateTicketPrice(type, inputId) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    let newPrice = document.getElementById(inputId).value;
+    
+    // التأكد من أن القيمة المدخلة أرقام إنجليزية
+    newPrice = newPrice.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, d => d.charCodeAt(0) - (d <= '\u0669' ? 0x0660 : 0x06f0));
+
+    const price = parseFloat(newPrice);
+
+    if (!price || price < 0) {
+        alert('Please enter a valid price');
+        return;
+    }
+
+    fetch('http://localhost:3000/update-ticket-price', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: user.email,
+            type: type,
+            price: price
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Price updated successfully');
+            // Force price input to show in English numerals
+            document.getElementById(inputId).value = price.toFixed(2);
+        } else {
+            throw new Error(data.message || 'Failed to update price');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error updating price: ' + error.message);
+    });
+}
+
+function loadCurrentPrices() {
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                data.prices.forEach(price => {
+                    const inputId = getInputIdForTicketType(price.type);
+                    if (inputId) {
+                        // Force price display in English numerals
+                        document.getElementById(inputId).value = parseFloat(price.price).toFixed(2);
+                    }
+                });
+            }
+        })
+        .catch(error => console.error('Error loading prices:', error));
+}
+
+// Add input event listeners to force English numerals
+document.addEventListener('DOMContentLoaded', function() {
+    const priceInputs = ['price-2hours', 'price-3days', 'price-7days', 'price-30days'];
+    priceInputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', function(e) {
+                // Convert any Arabic/Persian numerals to English
+                let value = e.target.value;
+                value = value.replace(/[٠-٩]/g, d => d.charCodeAt(0) - '٠'.charCodeAt(0))
+                           .replace(/[۰-۹]/g, d => d.charCodeAt(0) - '۰'.charCodeAt(0));
+                e.target.value = value;
+            });
+        }
+    });
+});
+
+    function formatDate(dateStr) {
+    // تعيين المنطقة الزمنية والتنسيق للغة الإنجليزية
+    return new Date(dateStr).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short', // سيظهر الشهر مختصر مثل Jan, Feb, etc.
+        day: 'numeric', // سيظهر اليوم كرقم بدون أصفار في البداية
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true, // لاستخدام نظام AM/PM
+        timeZone: 'Asia/Riyadh'
+    }).replace(/،/g, ','); // استبدال الفاصلة العربية بالإنجليزية إن وجدت
+}
+
+// تحديث تهيئة حقل التاريخ
+function initializeDateInput() {
+    const dateInput = document.getElementById('announcement-expiry');
+    if (dateInput) {
+        dateInput.setAttribute('lang', 'en');
+        dateInput.style.direction = 'ltr';
+        
+        const now = new Date();
+        const localDateTime = new Date(now.getTime())
+            .toISOString()
+            .slice(0, 16);
+        
+        dateInput.min = localDateTime;
+        dateInput.value = localDateTime;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDateInput();
+    checkAdminAndShowPanel();
+    loadTicketHistory();
+});
+
+document.querySelector('.eye-icon').addEventListener('click', togglePassword);
+
+function checkAdminAndShowPanel() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.email === 'abdullah@gmail.com') {
+        document.getElementById('admin-panel').style.display = 'block';
+        loadAllTickets(); // استدعاء دالة تحميل التذاكر مباشرة
+    }
+}
+
+function createAnnouncement() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const message = document.getElementById('announcement-text').value;
+    const expiryDateInput = document.getElementById('announcement-expiry').value;
+
+    if (!message || !expiryDateInput) {
+        alert('Please fill in both the message and expiry date');
+        return;
+    }
+
+    // تنسيق التاريخ باللغة الإنجليزية
+    const expiryDate = new Date(expiryDateInput);
+    
+    fetch('http://localhost:3000/create-announcement', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: user.email,
+            message: message,
+            expiryDate: expiryDate.toISOString()
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const formattedDate = formatDate(expiryDate);
+            alert(`Announcement created successfully\nExpiry: ${formattedDate}`);
+            document.getElementById('announcement-text').value = '';
+            document.getElementById('announcement-expiry').value = '';
+        } else {
+            throw new Error(data.message || 'Failed to create announcement');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error creating announcement: ' + error.message);
+    });
+}
+
+// تحديث تهيئة حقل التاريخ
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('announcement-expiry');
+    if (dateInput) {
+        // إعداد اللغة للإنجليزية
+        dateInput.setAttribute('lang', 'en');
+        
+        // تعيين الحد الأدنى للتاريخ إلى الوقت الحالي
+        const now = new Date();
+        const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+                                .toISOString()
+                                .slice(0, 16);
+        dateInput.min = localDateTime;
+        dateInput.value = localDateTime;
+    }
+
+    checkAdminAndShowPanel();
+    loadTicketHistory();
+});
+
+function loadAllTickets() {
+    fetch('http://localhost:3000/all-tickets')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const tbody = document.getElementById('all-tickets-body');
+                tbody.innerHTML = data.tickets.map(ticket => `
+                    <tr>
+                        <td>${ticket.ticket_number}</td>
+                        <td>${ticket.username}<br>${ticket.email}</td>
+                        <td>${ticket.ticket_type}</td>
+                        <td>${new Date(ticket.end_time) > new Date() ? 'Active' : 'Expired'}</td>
+                        <td>${formatDate(ticket.start_time)}</td>
+                        <td>${formatDate(ticket.end_time)}</td>
+                        <td>
+                            <button onclick="showTicketDetails(${JSON.stringify(ticket)})" 
+                                    class="admin-btn">View</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading tickets:', error);
+        });
+}
+
+// تعديل دالة checkAdminAndShowPanel
+function checkAdminAndShowPanel() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.email === 'abdullah@gmail.com') {
+        document.getElementById('admin-panel').style.display = 'block';
+        loadCurrentPrices(); // تحميل الأسعار الحالية
+    }
+}
+
+function loadCurrentPrices() {
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                data.prices.forEach(price => {
+                    const inputId = getInputIdForTicketType(price.type);
+                    if (inputId) {
+                        // Force price display in English numerals
+                        document.getElementById(inputId).value = parseFloat(price.price).toFixed(2);
+                    }
+                });
+            }
+        })
+        .catch(error => console.error('Error loading prices:', error));
+}
+
+function getInputIdForTicketType(type) {
+    const mapping = {
+        '2 Hours pass': 'price-2hours',
+        '3 Days pass': 'price-3days',
+        '7 Days pass': 'price-7days',
+        '30 Days pass': 'price-30days'
+    };
+    return mapping[type];
+}
 
     </script>
 </body>
