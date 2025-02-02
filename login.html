@@ -1,547 +1,481 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login</title>
-    <link rel="icon" href="Pics/1..png">
-    <style>
-      body {
-            background-color: #f5f5f5;
-            background: linear-gradient(to right, #e2e2e2, #21a953);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            width: 800px;
-            max-height: 100%;
-            min-height: 500px;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .container p {
-            font-size: 14px;
-            line-height: 20px;
-            letter-spacing: 0.5px;
-            margin: 20px 0;
-        }
-
-        .container span {
-            font-size: 12px;
-        }
-
-        .container a {
-            color: #333;
-            font-size: 13px;
-            text-decoration: none;
-            margin: 15px 0 10px;
-        }
-
-        .container button {
-            background-color: #21a953;
-            color: #fff;
-            font-size: 14px;
-            padding: 12px 50px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .container button.hidden {
-            background-color: transparent;
-            color: #d3e6da;
-            border: 1px solid #d3e6da;
-        }
-
-        .container button:hover {
-            background-color: #188740;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .container form {
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 0 60px;
-            height: 100%;
-        }
-
-        .container form h1 {
-            position: relative;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .container input {
-            background-color: #e9efe9;
-            border: 1px solid #ddd;
-            margin: 10px;
-            padding: 12px 20px;
-            font-size: 14px;
-            width: 50%;
-            outline: none;
-            transition: border 0.3s ease;
-            border-radius: 8px;
-        }
-
-        .container input:focus {
-            border-color: #21a953;
-            box-shadow: 0 0 8px rgba(33, 169, 83, 0.5);
-        }
-
-        .form-container {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            transition: all 0.6s ease-in-out;
-        }
-
-        .sign-in {
-            left: 0;
-            width: 50%;
-            z-index: 2;
-        }
-
-        .container.active .sign-in {
-            transform: translateX(100%);
-        }
-
-        .sign-up {
-            left: 0;
-            width: 50%;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .container.active .sign-up {
-            transform: translateX(100%);
-            opacity: 1;
-            z-index: 5;
-            animation: move 0.6s;
-        }
-
-        @keyframes move {
-            0%, 49.99% {
-                opacity: 1;
-                z-index: 0;
+    <head>
+        <title>Riyadh Metro - Tickets</title>
+        <link rel="icon" href="Pics/1..png">
+        <link rel="stylesheet" href="RiyadhMetro.css">
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <style>
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 80%;
+                margin: 10px auto;
+                display: block;
             }
-            50%, 100% {
-                opacity: 1;
-                z-index: 5;
+
+            .tktbtn:hover {
+                background-color: #188740;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             }
-        }
 
-        .toggle-container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-            transition: all 0.6s ease-in-out;
-            border-radius: 150px 0 0 100px;
-        }
-
-        .container.active .toggle-container {
-            transform: translateX(-100%);
-            border-radius: 0 150px 100px 0;
-        }
-
-        .toggle {
-            background-color: #21a953;
-            height: 100%;
-            background: linear-gradient(to right, #188740, #21a953);
-            color: #fff;
-            position: relative;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            transform: translateX(0);
-            transition: all 0.6s ease-in-out;
-        }
-
-        .container.active .toggle {
-            transform: translateX(50%);
-        }
-
-        .toggle-panel {
-            position: absolute;
-            height: 100%;
-            width: 50%;
-            margin: 150px 0;
-            display: flex;
-            align-items: center;
-            justify-self: center;
-            flex-direction: column;
-            padding: 0 30px;
-            text-align: center;
-            top: 0;
-            transform: translateX(0);
-            transition: all 0.6s ease-in-out;
-        }
-
-        .toggle-left {
-            transform: translateX(-200%);
-            padding-left: 30px;
-        }
-
-        .container.active .toggle-left {
-            transform: translateX(0);
-        }
-
-        .toggle-right {
-            right: 0;
-            transform: translateX(0);
-            padding-left: 30px;
-        }
-
-        .container.active .toggle-right {
-            transform: translateX(200%);
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 2px;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .image-container img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-container img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 40%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-content h2 {
-            margin-bottom: 20px;
-            font-size: 22px;
-            color: #333;
-        }
-
-        .modal-content input {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .modal-content button {
-            background-color: #21a953;
-            color: #fff;
-            font-size: 14px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .modal-content button:hover {
-            background-color: #188740;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #888;
-        }
-
-        .close-btn:hover {
-            color: #000;
-        }
-
-        .password-container {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .password-container input {
-            width: 50%;  
-            padding: 12px 20px;  
-            margin: 10px;  
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #e9efe9;
-            outline: none;
-            transition: border 0.3s ease;
-        }
-
-        .eye-icon {
-            position: absolute;
-            right: 26.5%;  
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 20px;  
-            color: #999;
-            transition: color 0.3s ease;
-            z-index: 2;
-            padding: 0 5px;
-        }
-
-        .eye-icon.active {
-            color: #21a953;
-        }
-
-        .password-container input:focus {
-            border-color: #21a953;
-            box-shadow: 0 0 8px rgba(33, 169, 83, 0.5);
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .home-button {
-            background-color: #21a953;
-            color: #fff;
-            font-size: 14px;
-            padding: 12px 50px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .home-button:hover {
-            background-color: #188740;
-        }  
-    </style>
-</head>
-<body>
-    <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form id="signup-form">
-                <div class="image-container">
-                    <img src="Pics/1..png" alt="Image 1">
-                    <img src="Pics/unii.png" alt="Image 2">
-                </div>
-                <h1>Create an account</h1>
-                <input type="text" id="signup-username" placeholder="Username" required>
-                <input type="email" id="signup-email" placeholder="Email" required>
-                <div class="password-container">
-                    <input type="password" id="signup-password" placeholder="Password" required>
-                    <span id="toggle-signup-password" class="eye-icon">&#128065;</span>
-                </div>
-                <div class="button-container">
-                    <button type="submit">Signup</button>
-                    <button class="home-button" onclick="window.location.href='index.html'">Home</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="form-container sign-in">
-            <form id="login-form">
-                <div class="image-container">
-                    <img src="Pics/1..png" alt="Image 1">
-                    <img src="Pics/unii.png" alt="Image 2">
-                </div>
-                <h1>Login</h1>
-                <input type="email" id="login-email" placeholder="Email" required>
-                <div class="password-container">
-                    <input type="password" id="login-password" placeholder="Password" required>
-                    <span id="toggle-login-password" class="eye-icon">&#128065;</span>
-                </div>
-                <a href="#" id="forgot-password">Forgot your password?</a>
-                <div class="button-container">
-                    <button type="submit">Login</button>
-                    <button class="home-button" onclick="window.location.href='index.html'">Home</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Login</h1>
-                    <p>Already have an account?</p>
-                    <button class="hidden" id="log-in">Login</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Join us</h1>
-                    <p>New? Create an account</p>
-                    <button class="hidden" id="register">Signup</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="reset-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <h2>Reset Password</h2>
-                <form>
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Send Reset Link</button>
-                    <button type="button" class="home-button" onclick="window.location.href='index.html'">Home</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        
-document.getElementById("signup-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const username = document.getElementById("signup-username").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-
-    fetch("http://localhost:3000/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Registration has been successfully completed ,now you can login");
-            document.getElementById("container").classList.remove("active"); 
-        } else {
-            alert("Registration error  " + data.message);
-        }
-    })
-    .catch(error => console.error("Error:", error));
-});
-
-       
-        document.getElementById("login-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-
-    fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                localStorage.setItem("user", JSON.stringify(data.user));
-                window.location.href = "index.html"; 
-            } else {
-                alert(data.message); 
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                position: relative;
+                overflow: hidden;
             }
-        })
-        .catch((error) => console.error("Error:", error));
-});
-        function togglePasswordVisibility(passwordFieldId, eyeIconId) {
-            const passwordField = document.getElementById(passwordFieldId);
-            const eyeIcon = document.getElementById(eyeIconId);
+
+            .price:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .payment-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .payment-content {
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                width: 90%;
+                max-width: 400px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-details input {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 16px;
+            }
+
+            .card-info {
+                display: flex;
+                gap: 10px;
+            }
+
+            .pay-button {
+                background: #21a953;
+                color: white;
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                margin-top: 20px;
+                cursor: pointer;
+            }
+
+            .cancel-button {
+                background: #dc3545;
+                color: white;
+                width: 100%;
+                padding: 12px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+
+            .admin-controls {
+                margin-top: 10px;
+                padding: 10px;
+                background: #f5f5f5;
+                border-radius: 4px;
+            }
+
+            .admin-controls input {
+                width: 80px;
+                padding: 5px;
+                margin-right: 5px;
+            }
+
+            .admin-controls button {
+                background: #21a953;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                margin: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .price:hover {
+                transform: translateY(-5px);
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            .tktbtn:hover {
+                background-color: #188740;
+            }
+
+            #prices {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .price {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                width: 100%;
+                margin: 0;
+                transition: transform 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .price img {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                margin-bottom: 15px;
+            }
+
+            .price h3 {
+                font-size: 20px;
+                color: #072211;
+                margin: 10px 0;
+            }
+
+            .ticket-duration {
+                color: #666;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+
+            .ticket-price {
+                color: #21a953;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .tktbtn {
+                background-color: #21a953;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 80%;
+                margin-top: auto;
+            }
+
+            @media (max-width: 768px) {
+                #prices {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="head">
+            <a href="tickets.html"><button class="buttons">Tickets</button></a>
+            <a href="line.html"><button class="buttons">Lines</button></a>
+            <a href="Paths.html"><button class="buttons">Paths</button></a>
+            <a href="About.html"><button class="buttons">About</button></a>
+            <a href="Contact.html"><button class="buttons">Contact</button></a>
             
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                eyeIcon.classList.add('active');
-            } else {
-                passwordField.type = 'password';
-                eyeIcon.classList.remove('active');
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
+                    <a href="tickets.html">Tickets</a>
+                    <a href="line.html">Lines</a>
+                    <a href="Paths.html">Paths</a>
+                    <a href="About.html">About</a>
+                    <a href="Contact.html">Contact</a>
+                </div>
+            </div>
+            <div id="Pic">
+                <a href="index.html"><img src="Pics/drb.png" style="height: 100px;"></a>
+                <img src="Pics/unii.png" alt="Static Image" style="height: 100px;">
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="tkt1">
+                <img src="Pics/tickets.jpg" id="tktk">
+                <p id="tkt2">Tickets</p>
+            </div>
+            
+            <div id="buy">
+                <p>Buy Tickets:</p>
+                <div id="prices">
+                   
+                </div>
+
+                <p style="margin: 30px 0 100px;">Discounted Fares:</p>
+                <div>
+                    <button class="btn">Students</button>
+                    <button class="btn">Seniors</button>
+                    <button class="btn">People with Disabilities</button>
+                    <button class="btn">Cancer patients</button>
+                    <button class="btn">Martyrs’ relatives</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function checkUserAndPurchase(type, price, duration) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (!user) {
+                    alert('Please login first to purchase tickets');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const ticketData = {
+                    type: type,
+                    price: parseFloat(price),
+                    duration: duration,
+                    selectedTime: new Date().toISOString()
+                };
+                
+                localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+                window.location.href = 'payment.html';
             }
-        }
 
-        document.getElementById("register").addEventListener("click", () => {
-    document.getElementById("container").classList.add("active");
-});
+            
+            function loadTicketPrices() {
+                console.log("Starting to load ticket prices...");
+                const pricesContainer = document.getElementById('prices');
+                pricesContainer.innerHTML = '<p>Loading tickets...</p>';
 
-document.getElementById("log-in").addEventListener("click", () => {
-    document.getElementById("container").classList.remove("active");
-});
+               
+                const defaultTickets = [
+                    { type: '2 Hours pass', price: 4.00, duration: '2 hours' },
+                    { type: '3 Days pass', price: 20.00, duration: '3 days' },
+                    { type: '7 Days pass', price: 40.00, duration: '7 days' },
+                    { type: '30 Days pass', price: 140.00, duration: '30 days' }
+                ];
 
-        document.getElementById("toggle-signup-password").addEventListener("click", function() {
-            togglePasswordVisibility("signup-password", "toggle-signup-password");
-        });
-
-        document.getElementById("toggle-login-password").addEventListener("click", function() {
-            togglePasswordVisibility("login-password", "toggle-login-password");
-        });
-
-        document.getElementById("forgot-password").addEventListener("click", (e) => {
-            e.preventDefault();
-            document.getElementById("reset-modal").style.display = "block";
-        });
-
-        document.querySelector(".close-btn").addEventListener("click", () => {
-            document.getElementById("reset-modal").style.display = "none";
-        });
-
-        window.addEventListener("click", (e) => {
-            if (e.target === document.getElementById("reset-modal")) {
-                document.getElementById("reset-modal").style.display = "none";
+                fetch('http://localhost:3000/ticket-prices')
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Received data:", data);
+                        const tickets = data.success && data.prices && data.prices.length > 0 
+                            ? data.prices 
+                            : defaultTickets;
+                        
+                        pricesContainer.innerHTML = tickets.map(ticket => `
+                            <div class="price">
+                                <img src="Pics/ticket1.png" class="hover-img">
+                                <h3>${ticket.type}</h3>
+                                <p class="ticket-duration">Valid for: ${ticket.duration}</p>
+                                <p class="ticket-price">${ticket.price} SAR</p>
+                                <button class="tktbtn" onclick="checkUserAndPurchase('${ticket.type}', ${ticket.price}, '${ticket.duration}')">
+                                    Buy Ticket
+                                </button>
+                            </div>
+                        `).join('');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                      
+                        pricesContainer.innerHTML = defaultTickets.map(ticket => `
+                            <div class="price">
+                                <img src="Pics/ticket1.png" class="hover-img">
+                                <h3>${ticket.type}</h3>
+                                <p class="ticket-duration">Valid for: ${ticket.duration}</p>
+                                <p class="ticket-price">${ticket.price} SAR</p>
+                                <button class="tktbtn" onclick="checkUserAndPurchase('${ticket.type}', ${ticket.price}, '${ticket.duration}')">
+                                    Buy Ticket
+                                </button>
+                            </div>
+                        `).join('');
+                    });
             }
-        });
 
-        document.getElementById("log-in").addEventListener("click", () => {
-            document.getElementById("container").classList.remove("active");
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log("Page loaded, calling loadTicketPrices");
+                loadTicketPrices();
+            });
 
-       
-    </script>
-</body>
+            function checkAdmin() {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    fetch('http://localhost:3000/check-admin', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: user.email })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.isAdmin) {
+                            document.querySelectorAll('.admin-controls').forEach(el => {
+                                el.style.display = 'block';
+                            });
+                        }
+                    });
+                }
+            }
+
+            function updatePrice(button) {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const type = button.dataset.type;
+                const price = button.previousElementSibling.value;
+
+                if (!price || price < 1) {
+                    alert('Please enter a valid price');
+                    return;
+                }
+
+                fetch('http://localhost:3000/update-ticket-price', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: user.email,
+                        type: type,
+                        price: parseFloat(price)
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Price updated successfully');
+                        loadTicketPrices(); 
+                    } else {
+                        alert('Failed to update price');
+                    }
+                });
+            }
+
+            
+        </script>
+
+        <footer>
+            <div id="tail">
+                <div id="third">
+                    <p>Download darb app now!</p>
+                    <div>
+                        <a href="https://apps.apple.com/sa/app/darb-%D8%AF%D8%B1%D8%A8/id1549817739">
+                            <img src="Pics/as.png" id="pi">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.rcrc.riyadhjourneyplanner">
+                            <img src="Pics/gp.png" id="pi">
+                        </a>
+                    </div>
+                </div>
+                <div id="second">
+                    <div id="t3"> 
+                        <a href="line.html"><button class="buttons2">Metro lines</button></a>
+                        <a href="Paths.html"><button class="buttons2">Plan your journey</button></a>
+                        <a href="tickets.html"><button class="buttons2">Buy a ticket</button></a>
+                    </div>
+                    <div id="t3">
+                        <a href="About.html"><button class="buttons2">About the metro</button></a>
+                        <a href="Contact.html"><button class="buttons2">Contact us</button></a>
+                    </div>
+                </div>
+                <div id="first">
+                    <div id="t1"><img src="Pics/drb.png" id="drb"></div>
+                    <div id="t2">
+                        <a href="https://www.youtube.com/channel/UCQYmsh8gxjU5HM7gEyRkT5w">
+                            <img src="Pics/youtube.png" id="sm">
+                        </a>
+                        <a href="https://www.linkedin.com/company/riyadhtransport/">
+                            <img src="Pics/linkedin.png" id="sm">
+                        </a>
+                        <a href="https://www.facebook.com/riyadhtransport">
+                            <img src="Pics/facebook.png" id="sm">
+                        </a>
+                        <a href="https://www.instagram.com/riyadhtransport/">
+                            <img src="Pics/instagram.png" id="sm">
+                        </a>
+                        <a href="https://x.com/RiyadhTransport">
+                            <img src="Pics/twitter.png" id="sm">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
