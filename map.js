@@ -227,7 +227,7 @@ populateStations("destination-line", "destination");
 
 
 document.getElementById('reset-trip').addEventListener('click', () => {
-    location.href = `path.html`;
+    location.href = `Paths.html`;
 });
 
 
