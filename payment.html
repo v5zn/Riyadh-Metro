@@ -403,10 +403,7 @@
             <div class="ticket-selection">
                 <label for="ticket-select">Select Ticket Type:</label>
                 <select id="ticket-select" onchange="updateTicketDetails()">
-                    <option value="2 Hours pass" data-price="4" data-duration="2 hours">2 Hours pass - 4 SAR</option>
-                    <option value="3 Days pass" data-price="20" data-duration="3 days">3 Days pass - 20 SAR</option>
-                    <option value="7 Days pass" data-price="40" data-duration="7 days">7 Days pass - 40 SAR</option>
-                    <option value="30 Days pass" data-price="140" data-duration="30 days">30 Days pass - 140 SAR</option>
+                   
                 </select>
             </div>
             <div class="ticket-info">
@@ -589,17 +586,60 @@
 
        
         document.addEventListener('DOMContentLoaded', function() {
-            const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
-            if (savedTicket) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (!savedTicket) {
+        window.location.href = 'tickets.html';
+        return;
+    }
+
+   
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
                 const select = document.getElementById('ticket-select');
-                Array.from(select.options).forEach(option => {
-                    if (option.value === savedTicket.type) {
+                select.innerHTML = '';
+                
+                data.prices.forEach(ticket => {
+                    const option = document.createElement('option');
+                    option.value = ticket.type;
+                    option.dataset.price = ticket.price;
+                    option.dataset.duration = ticket.duration;
+                    option.textContent = `${ticket.type} - ${ticket.price} SAR`;
+                    
+                    
+                    if (savedTicket && savedTicket.type === ticket.type) {
                         option.selected = true;
                     }
+                    select.appendChild(option);
                 });
+
+               
+                if (select.selectedIndex === -1 && select.options.length > 0) {
+                    
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === savedTicket.type) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
                 updateTicketDetails();
             }
+        })
+        .catch(error => {
+            console.error('Error loading prices:', error);
+            window.location.href = 'tickets.html';
         });
+});
+
 
         let selectedMethod = 'card';
         function selectPaymentMethod(method) {
@@ -986,6 +1026,360 @@ function showError(elementId, message) {
         element.focus();
     }
 }
+</script>
+
+<script>
+function loadCurrentPrices() {
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const select = document.getElementById('ticket-select');
+                select.innerHTML = ''; 
+                
+                data.prices.forEach(ticket => {
+                    const option = document.createElement('option');
+                    option.value = ticket.type;
+                    option.dataset.price = ticket.price;
+                    option.dataset.duration = ticket.duration;
+                    option.textContent = `${ticket.type} - ${ticket.price} SAR`;
+                    select.appendChild(option);
+                });
+                
+                
+                updateTicketDetails();
+            }
+        })
+        .catch(error => {
+            console.error('Error loading prices:', error);
+          
+        });
+}
+
+function updateTicketDetails() {
+    const select = document.getElementById('ticket-select');
+    const option = select.options[select.selectedIndex];
+    
+    const type = option.value;
+    const price = option.dataset.price;
+    const duration = option.dataset.duration;
+    
+    document.getElementById('ticket-type').textContent = type;
+    document.getElementById('ticket-duration').textContent = duration;
+    document.getElementById('ticket-price').textContent = price;
+    document.getElementById('button-price').textContent = price;
+    
+    const ticketData = {
+        type: type,
+        price: parseFloat(price),
+        duration: duration
+    };
+    localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadCurrentPrices();
+});
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (!savedTicket) {
+        window.location.href = 'tickets.html';
+        return;
+    }
+
+   
+    document.getElementById('ticket-type').textContent = savedTicket.type;
+    document.getElementById('ticket-duration').textContent = savedTicket.duration;
+    document.getElementById('ticket-price').textContent = savedTicket.price.toFixed(2);
+    document.getElementById('button-price').textContent = savedTicket.price.toFixed(2);
+
+    
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const select = document.getElementById('ticket-select');
+                select.innerHTML = '';
+                
+                data.prices.forEach(ticket => {
+                    const option = document.createElement('option');
+                    option.value = ticket.type;
+                    option.dataset.price = ticket.price;
+                    option.dataset.duration = ticket.duration;
+                    option.textContent = `${ticket.type} - ${ticket.price} SAR`;
+                    
+                   
+                    if (savedTicket.type === ticket.type) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error loading prices:', error);
+           
+            const select = document.getElementById('ticket-select');
+            const option = document.createElement('option');
+            option.value = savedTicket.type;
+            option.dataset.price = savedTicket.price;
+            option.dataset.duration = savedTicket.duration;
+            option.textContent = `${savedTicket.type} - ${savedTicket.price} SAR`;
+            option.selected = true;
+            select.appendChild(option);
+        });
+});
+
+
+function updateTicketDetails() {
+    const select = document.getElementById('ticket-select');
+    const option = select.options[select.selectedIndex];
+    
+    if (option) {
+        const type = option.value;
+        const price = parseFloat(option.dataset.price);
+        const duration = option.dataset.duration;
+        
+        document.getElementById('ticket-type').textContent = type;
+        document.getElementById('ticket-duration').textContent = duration;
+        document.getElementById('ticket-price').textContent = price.toFixed(2);
+        document.getElementById('button-price').textContent = price.toFixed(2);
+        
+        const ticketData = {
+            type: type,
+            price: price,
+            duration: duration,
+            selectedTime: new Date().toISOString()
+        };
+        localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+    }
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (!savedTicket) {
+        window.location.href = 'tickets.html';
+        return;
+    }
+
+   
+    displayTicketDetails(savedTicket);
+    
+    
+    loadAvailableTickets(savedTicket);
+});
+
+function displayTicketDetails(ticket) {
+    document.getElementById('ticket-type').textContent = ticket.type;
+    document.getElementById('ticket-duration').textContent = ticket.duration;
+    document.getElementById('ticket-price').textContent = ticket.price.toFixed(2);
+    document.getElementById('button-price').textContent = ticket.price.toFixed(2);
+}
+
+function loadAvailableTickets(selectedTicket) {
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const select = document.getElementById('ticket-select');
+                select.innerHTML = '';
+                
+                data.prices.forEach(ticket => {
+                    const option = document.createElement('option');
+                    option.value = ticket.type;
+                    option.dataset.price = ticket.price;
+                    option.dataset.duration = ticket.duration;
+                    option.textContent = `${ticket.type} - ${ticket.price} SAR`;
+                    
+                    if (selectedTicket.type === ticket.type) {
+                        option.selected = true;
+                    }
+                    
+                    select.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error loading tickets:', error);
+            
+            const select = document.getElementById('ticket-select');
+            const option = document.createElement('option');
+            option.value = selectedTicket.type;
+            option.dataset.price = selectedTicket.price;
+            option.dataset.duration = selectedTicket.duration;
+            option.textContent = `${selectedTicket.type} - ${selectedTicket.price} SAR`;
+            option.selected = true;
+            select.appendChild(option);
+        });
+}
+
+function updateTicketDetails() {
+    const select = document.getElementById('ticket-select');
+    const option = select.options[select.selectedIndex];
+    
+    if (option) {
+        const ticketData = {
+            type: option.value,
+            price: parseFloat(option.dataset.price),
+            duration: option.dataset.duration,
+            selectedTime: new Date().toISOString()
+        };
+        
+        localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+        displayTicketDetails(ticketData);
+    }
+}
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (!savedTicket || !savedTicket.type) {
+        alert('Please select a ticket first');
+        window.location.href = 'tickets.html';
+        return;
+    }
+
+   
+    document.getElementById('ticket-type').textContent = savedTicket.type;
+    document.getElementById('ticket-duration').textContent = savedTicket.duration;
+    document.getElementById('ticket-price').textContent = savedTicket.price.toFixed(2);
+    document.getElementById('button-price').textContent = savedTicket.price.toFixed(2);
+
+    const select = document.getElementById('ticket-select');
+    const option = document.createElement('option');
+    option.value = savedTicket.type;
+    option.dataset.price = savedTicket.price;
+    option.dataset.duration = savedTicket.duration;
+    option.textContent = `${savedTicket.type} - ${savedTicket.price} SAR`;
+    option.selected = true;
+    select.innerHTML = ''; 
+    select.appendChild(option);
+});
+
+
+function updateTicketDetails() {
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (savedTicket) {
+        document.getElementById('ticket-type').textContent = savedTicket.type;
+        document.getElementById('ticket-duration').textContent = savedTicket.duration;
+        document.getElementById('ticket-price').textContent = savedTicket.price.toFixed(2);
+        document.getElementById('button-price').textContent = savedTicket.price.toFixed(2);
+    }
+}
+
+</script>
+
+<script>
+function updateTicketDetails() {
+    const select = document.getElementById('ticket-select');
+    const selectedOption = select.options[select.selectedIndex];
+    
+    if (selectedOption) {
+        const type = selectedOption.value;
+        const price = parseFloat(selectedOption.dataset.price);
+        const duration = selectedOption.dataset.duration;
+        
+        
+        document.getElementById('ticket-type').textContent = type;
+        document.getElementById('ticket-duration').textContent = duration;
+        document.getElementById('ticket-price').textContent = price.toFixed(2);
+        document.getElementById('button-price').textContent = price.toFixed(2);
+        
+       
+        const ticketData = {
+            type: type,
+            price: price,
+            duration: duration,
+            selectedTime: new Date().toISOString()
+        };
+        localStorage.setItem('selectedTicket', JSON.stringify(ticketData));
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert('Please login first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const savedTicket = JSON.parse(localStorage.getItem('selectedTicket'));
+    if (!savedTicket) {
+        window.location.href = 'tickets.html';
+        return;
+    }
+
+    
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const select = document.getElementById('ticket-select');
+                select.innerHTML = '';
+                
+                data.prices.forEach(ticket => {
+                    const option = document.createElement('option');
+                    option.value = ticket.type;
+                    option.dataset.price = ticket.price;
+                    option.dataset.duration = ticket.duration;
+                    option.textContent = `${ticket.type} - ${ticket.price} SAR`;
+                    
+                    if (savedTicket && savedTicket.type === ticket.type) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+                
+                
+                updateTicketDetails();
+            }
+        })
+        .catch(error => {
+            console.error('Error loading tickets:', error);
+        });
+
+   
+    const select = document.getElementById('ticket-select');
+    select.addEventListener('change', updateTicketDetails);
+});
 </script>
 
     <footer>
