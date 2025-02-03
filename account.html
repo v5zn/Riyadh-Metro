@@ -334,12 +334,12 @@
     margin: 30px auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr;  /* تغيير من 3 إلى 2 أعمدة */
+    grid-template-columns: 1fr 1fr;  
     gap: 20px;
 }
 
 .ticket-history-container {
-    grid-column: 1 / -1;  /* جعل ticket history تمتد على كامل العرض */
+    grid-column: 1 / -1;  
     margin-top: 20px;
 }
 
@@ -365,7 +365,7 @@
     width: 100%;
 }
 
-/* تحسين مظهر الجدول */
+
 .ticket-table {
     width: 100%;
     margin-top: 15px;
@@ -383,9 +383,7 @@
     border-bottom: 1px solid #eee;
 }
 
-/* ... rest of existing styles ... */
 
-/* تعديل زر Logout */
 .logout-btn {
     background-color: #dc3545;
     color: white;
@@ -403,7 +401,7 @@
     background-color: #c82333;
 }
 
-/* تعديل أيقونة العين */
+
 .password-container {
     position: relative;
     width: 100%;
@@ -413,7 +411,7 @@
 
 .password-container input {
     width: 100%;
-    padding: 8px 35px 8px 12px; /* زيادة المسافة على اليمين لأيقونة العين */
+    padding: 8px 35px 8px 12px; 
 }
 
 .eye-icon {
@@ -430,10 +428,10 @@
     color: #21a953;
 }
 
-/* تعديل مربع الإعلان والتاريخ */
+
 #announcement-text {
     width: 100%;
-    min-height: 150px; /* زيادة ارتفاع مربع النص */
+    min-height: 150px; 
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -501,6 +499,143 @@
 .price-item button:hover {
     background: #188740;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s;
+}
+
+.ticket-details-container {
+    padding: 20px;
+}
+
+.ticket-info {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.ticket-info h3 {
+    color: #21a953;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 18px;
+}
+
+.ticket-info p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.barcode-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 150px;
+    width: 150px;
+}
+
+.close-btn {
+    width: 100%;
+    background-color: #21a953;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #188740;
+}
+
+.close-ticket {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.price-input {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: right;
+    direction: ltr;
+}
+
+.price-input:focus {
+    border-color: #21a953;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(33, 169, 83, 0.2);
+}
+.price-input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: right;
+    direction: ltr !important;
+    font-family: 'Arial', sans-serif;
+}
+
+.price-input::-webkit-inner-spin-button, 
+.price-input::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#announcement-expiry {
+    direction: ltr !important;
+    font-family: 'Arial', sans-serif;
+}
+.price-input {
+    font-family: 'Arial', sans-serif !important;
+    direction: ltr !important;
+    text-align: right;
+    padding-right: 8px;
+    letter-spacing: 1px;
+}
     </style>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
@@ -561,7 +696,7 @@
         <div id="admin-panel" style="display: none;">
     <h2>Admin Panel</h2>
     <div class="admin-section">
-        <!-- Existing announcement section -->
+        
         <div class="announcement-section">
             <h3>Create Announcement</h3>
             <textarea id="announcement-text" placeholder="Write your announcement here..."></textarea>
@@ -569,28 +704,55 @@
             <button onclick="createAnnouncement()" class="create-announcement-btn">Create Announcement</button>
         </div>
 
-        <!-- New ticket prices section -->
+       
         <div class="ticket-prices-section">
             <h3>Manage Ticket Prices</h3>
             <div class="price-controls">
                 <div class="price-item">
                     <label>2 Hours Pass Price:</label>
-                    <input type="number" id="price-2hours" min="0" step="0.5">
+                    <input type="text" 
+                           id="price-2hours" 
+                           class="price-input"
+                           dir="ltr"
+                           lang="en"
+                           onkeypress="return enforceEnglishNumerals(event)"
+                           oninput="formatPriceInput(this)"
+                           pattern="^\d*\.?\d{0,2}$"
+                           inputmode="decimal"
+                           placeholder="0.00">
                     <button onclick="updateTicketPrice('2 Hours pass', 'price-2hours')">Update</button>
                 </div>
                 <div class="price-item">
                     <label>3 Days Pass Price:</label>
-                    <input type="number" id="price-3days" min="0" step="0.5">
+                    <input type="number" 
+                           id="price-3days" 
+                           min="0" 
+                           step="0.01" 
+                           onkeypress="return enforceEnglishNumerals(event)"
+                           oninput="formatPriceInput(this)" 
+                           class="price-input">
                     <button onclick="updateTicketPrice('3 Days pass', 'price-3days')">Update</button>
                 </div>
                 <div class="price-item">
                     <label>7 Days Pass Price:</label>
-                    <input type="number" id="price-7days" min="0" step="0.5">
+                    <input type="number" 
+                           id="price-7days" 
+                           min="0" 
+                           step="0.01" 
+                           onkeypress="return enforceEnglishNumerals(event)"
+                           oninput="formatPriceInput(this)" 
+                           class="price-input">
                     <button onclick="updateTicketPrice('7 Days pass', 'price-7days')">Update</button>
                 </div>
                 <div class="price-item">
                     <label>30 Days Pass Price:</label>
-                    <input type="number" id="price-30days" min="0" step="0.5">
+                    <input type="number" 
+                           id="price-30days" 
+                           min="0" 
+                           step="0.01" 
+                           onkeypress="return enforceEnglishNumerals(event)"
+                           oninput="formatPriceInput(this)" 
+                           class="price-input">
                     <button onclick="updateTicketPrice('30 Days pass', 'price-30days')">Update</button>
                 </div>
             </div>
@@ -653,16 +815,16 @@
         </div>
 
     <div id="ticket-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-ticket">&times;</span>
-            <h2>Ticket Details</h2>
-            <div class="ticket-details-container">
-                <div id="ticket-details"></div>
-                <div id="ticket-barcode" class="barcode-container"></div>
-                <button class="close-btn" onclick="closeModal()">Close</button>
-            </div>
+    <div class="modal-content">
+        <span class="close-ticket">&times;</span>
+        <h2>Ticket Details</h2>
+        <div class="ticket-details-container">
+            <div id="ticket-details"></div>
+            <div id="ticket-barcode" class="barcode-container"></div>
+            <button class="close-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
+</div>
 
     <footer>
         <div id="tail">
@@ -748,13 +910,13 @@ function updateValue(fieldId, inputId) {
     const inputField = document.getElementById(fieldId);
     const editInput = document.getElementById(inputId);
     const newValue = editInput.value;
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!newValue.trim()) {
         alert("Please enter a valid value");
         return;
     }
 
-    const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
 
     const field = fieldId === 'full-name' ? 'username' : fieldId;
@@ -773,13 +935,16 @@ function updateValue(fieldId, inputId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            inputField.value = newValue;
-            
             if (field === 'username') user.username = newValue;
             if (field === 'email') user.email = newValue;
-            if (field === 'password') user.password = newValue;
+            if (field === 'password') {
+                user.password = newValue;
+                inputField.value = "••••••••"; 
+            } else {
+                inputField.value = newValue;
+            }
+            
             localStorage.setItem("user", JSON.stringify(user));
-
             closeEditBox(`edit-${fieldId}`);
             alert("Updated successfully!");
         } else {
@@ -795,7 +960,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (user) {
         document.getElementById("full-name").value = user.username || "";
         document.getElementById("email").value = user.email || "";
-        document.getElementById("password").value = "it is not your businness";
+        document.getElementById("password").value = "••••••••"; 
     } else {
         window.location.href = "login.html";
     }
@@ -853,49 +1018,49 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function showTicketDetails(ticket) {
-        const modal = document.getElementById('ticket-modal');
-        const details = document.getElementById('ticket-details');
-        const barcodeDiv = document.getElementById('ticket-barcode');
-        
-        details.innerHTML = '';
-        barcodeDiv.innerHTML = '';
-        
-        details.innerHTML = `
-            <div class="ticket-info">
-                <h3>User Information</h3>
-                <p><strong>Username:</strong> ${ticket.username}</p>
-                <p><strong>Email:</strong> ${ticket.email}</p>
+    const modal = document.getElementById('ticket-modal');
+    const details = document.getElementById('ticket-details');
+    const barcodeDiv = document.getElementById('ticket-barcode');
+    
+    details.innerHTML = '';
+    barcodeDiv.innerHTML = '';
+    
+    details.innerHTML = `
+        <div class="ticket-info">
+            <h3>User Information</h3>
+            <p><strong>Username:</strong> ${ticket.username}</p>
+            <p><strong>Email:</strong> ${ticket.email}</p>
 
-                <h3>Ticket Information</h3>
-                <p><strong>Ticket Number:</strong> ${ticket.ticket_number}</p>
-                <p><strong>Type:</strong> ${ticket.ticket_type}</p>
-                <p><strong>Price:</strong> ${ticket.price} SAR</p>
-                <p><strong>Purchase Date:</strong> ${formatDate(ticket.start_time)}</p>
-                <p><strong>Expiry Date:</strong> ${formatDate(ticket.end_time)}</p>
-                <p><strong>Status:</strong> 
-                    <span class="${new Date(ticket.end_time) > new Date() ? 'status-active' : 'status-expired'}">
-                        ${new Date(ticket.end_time) > new Date() ? 'Active' : 'Expired'}
-                    </span>
-                </p>
-            </div>
-        `;
-        
-        try {
-            new QRCode(barcodeDiv, {
-                text: ticket.ticket_number,
-                width: 128,
-                height: 128,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-        } catch (error) {
-            console.error('QR Code generation error:', error);
-            barcodeDiv.innerHTML = '<p>Unable to generate QR code at this time.</p>';
-        }
-        
-        modal.style.display = "block";
+            <h3>Ticket Information</h3>
+            <p><strong>Ticket Number:</strong> ${ticket.ticket_number}</p>
+            <p><strong>Type:</strong> ${ticket.ticket_type}</p>
+            <p><strong>Price:</strong> ${ticket.price} SAR</p>
+            <p><strong>Purchase Date:</strong> ${formatDate(ticket.start_time)}</p>
+            <p><strong>Expiry Date:</strong> ${formatDate(ticket.end_time)}</p>
+            <p><strong>Status:</strong> 
+                <span class="${new Date(ticket.end_time) > new Date() ? 'status-active' : 'status-expired'}">
+                    ${new Date(ticket.end_time) > new Date() ? 'Active' : 'Expired'}
+                </span>
+            </p>
+        </div>
+    `;
+    
+    try {
+        new QRCode(barcodeDiv, {
+            text: ticket.ticket_number,
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    } catch (error) {
+        console.error('QR Code generation error:', error);
+        barcodeDiv.innerHTML = '<p>Unable to generate QR code at this time.</p>';
     }
+    
+    modal.style.display = "block";
+}
 
     function closeModal() {
         document.getElementById('ticket-modal').style.display = "none";
@@ -920,20 +1085,23 @@ document.addEventListener("DOMContentLoaded", function() {
     function togglePassword() {
         const passwordField = document.getElementById('password');
         const eyeIcon = document.querySelector('.eye-icon');
+        const user = JSON.parse(localStorage.getItem("user"));
         
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
+            passwordField.value = user.password; 
             eyeIcon.textContent = '👁️';
             eyeIcon.style.color = '#21a953';
         } else {
             passwordField.type = 'password';
+            passwordField.value = "••••••••";
             eyeIcon.textContent = '👁️';
             eyeIcon.style.color = '#666';
         }
     }
 
     function formatDate(dateStr) {
-    // إجبار استخدام التنسيق الإنجليزي
+    
     return new Date(dateStr).toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
@@ -944,25 +1112,24 @@ document.addEventListener("DOMContentLoaded", function() {
         timeZone: 'Asia/Riyadh',
         numberingSystem: 'latn',
         calendar: 'gregory'
-    }).replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660) // تحويل الأرقام العربية إلى إنجليزية
-     .replace(/،/g, ',') // استبدال الفاصلة العربية
-     .replace(/[\u06f0-\u06f9]/g, d => d.charCodeAt(0) - 0x06f0); // تحويل الأرقام الفارسية إلى إنجليزية
+    }).replace(/[\u0660-\u0669]/g, d => d.charCodeAt(0) - 0x0660)
+     .replace(/،/g, ',') 
+     .replace(/[\u06f0-\u06f9]/g, d => d.charCodeAt(0) - 0x06f0)
 }
 
 function updateTicketPrice(type, inputId) {
     const user = JSON.parse(localStorage.getItem('user'));
-    let newPrice = document.getElementById(inputId).value;
-    
-    // التأكد من أن القيمة المدخلة أرقام إنجليزية
-    newPrice = newPrice.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, d => d.charCodeAt(0) - (d <= '\u0669' ? 0x0660 : 0x06f0));
+    const priceInput = document.getElementById(inputId);
+    let price = parseFloat(priceInput.value);
 
-    const price = parseFloat(newPrice);
-
-    if (!price || price < 0) {
+    if (isNaN(price) || price < 0) {
         alert('Please enter a valid price');
         return;
     }
 
+   
+    price = parseFloat(price.toFixed(2));
+    
     fetch('http://localhost:3000/update-ticket-price', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -975,9 +1142,9 @@ function updateTicketPrice(type, inputId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+        
+            priceInput.value = price.toFixed(2);
             alert('Price updated successfully');
-            // Force price input to show in English numerals
-            document.getElementById(inputId).value = price.toFixed(2);
         } else {
             throw new Error(data.message || 'Failed to update price');
         }
@@ -996,8 +1163,10 @@ function loadCurrentPrices() {
                 data.prices.forEach(price => {
                     const inputId = getInputIdForTicketType(price.type);
                     if (inputId) {
-                        // Force price display in English numerals
-                        document.getElementById(inputId).value = parseFloat(price.price).toFixed(2);
+                        const input = document.getElementById(inputId);
+                        if (input) {
+                            input.value = parseFloat(price.price).toFixed(2);
+                        }
                     }
                 });
             }
@@ -1005,14 +1174,14 @@ function loadCurrentPrices() {
         .catch(error => console.error('Error loading prices:', error));
 }
 
-// Add input event listeners to force English numerals
+
 document.addEventListener('DOMContentLoaded', function() {
     const priceInputs = ['price-2hours', 'price-3days', 'price-7days', 'price-30days'];
     priceInputs.forEach(id => {
         const input = document.getElementById(id);
         if (input) {
             input.addEventListener('input', function(e) {
-                // Convert any Arabic/Persian numerals to English
+               
                 let value = e.target.value;
                 value = value.replace(/[٠-٩]/g, d => d.charCodeAt(0) - '٠'.charCodeAt(0))
                            .replace(/[۰-۹]/g, d => d.charCodeAt(0) - '۰'.charCodeAt(0));
@@ -1023,19 +1192,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     function formatDate(dateStr) {
-    // تعيين المنطقة الزمنية والتنسيق للغة الإنجليزية
+   
     return new Date(dateStr).toLocaleString('en-US', {
         year: 'numeric',
-        month: 'short', // سيظهر الشهر مختصر مثل Jan, Feb, etc.
-        day: 'numeric', // سيظهر اليوم كرقم بدون أصفار في البداية
+        month: 'short', 
+        day: 'numeric', 
         hour: 'numeric',
         minute: '2-digit',
-        hour12: true, // لاستخدام نظام AM/PM
+        hour12: true, 
         timeZone: 'Asia/Riyadh'
-    }).replace(/،/g, ','); // استبدال الفاصلة العربية بالإنجليزية إن وجدت
+    }).replace(/،/g, ','); 
 }
 
-// تحديث تهيئة حقل التاريخ
+
 function initializeDateInput() {
     const dateInput = document.getElementById('announcement-expiry');
     if (dateInput) {
@@ -1064,7 +1233,7 @@ function checkAdminAndShowPanel() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user.email === 'abdullah@gmail.com') {
         document.getElementById('admin-panel').style.display = 'block';
-        loadAllTickets(); // استدعاء دالة تحميل التذاكر مباشرة
+        loadAllTickets(); 
     }
 }
 
@@ -1078,7 +1247,7 @@ function createAnnouncement() {
         return;
     }
 
-    // تنسيق التاريخ باللغة الإنجليزية
+    
     const expiryDate = new Date(expiryDateInput);
     
     fetch('http://localhost:3000/create-announcement', {
@@ -1109,14 +1278,14 @@ function createAnnouncement() {
     });
 }
 
-// تحديث تهيئة حقل التاريخ
+
 document.addEventListener('DOMContentLoaded', () => {
     const dateInput = document.getElementById('announcement-expiry');
     if (dateInput) {
-        // إعداد اللغة للإنجليزية
+      
         dateInput.setAttribute('lang', 'en');
         
-        // تعيين الحد الأدنى للتاريخ إلى الوقت الحالي
+        
         const now = new Date();
         const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
                                 .toISOString()
@@ -1156,12 +1325,12 @@ function loadAllTickets() {
         });
 }
 
-// تعديل دالة checkAdminAndShowPanel
+
 function checkAdminAndShowPanel() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user.email === 'abdullah@gmail.com') {
         document.getElementById('admin-panel').style.display = 'block';
-        loadCurrentPrices(); // تحميل الأسعار الحالية
+        loadCurrentPrices(); 
     }
 }
 
@@ -1173,8 +1342,11 @@ function loadCurrentPrices() {
                 data.prices.forEach(price => {
                     const inputId = getInputIdForTicketType(price.type);
                     if (inputId) {
-                        // Force price display in English numerals
-                        document.getElementById(inputId).value = parseFloat(price.price).toFixed(2);
+                        const input = document.getElementById(inputId);
+                        if (input) {
+                            
+                            input.value = parseFloat(price.price).toFixed(2);
+                        }
                     }
                 });
             }
@@ -1192,6 +1364,118 @@ function getInputIdForTicketType(type) {
     return mapping[type];
 }
 
+function validateNumberInput(event) {
+   
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode == 46) {
+       
+        if (event.target.value.indexOf('.') > -1) {
+            return false;
+        }
+        return true;
+    }
+
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
+function formatPrice(input) {
+    
+    let value = input.value.replace(/[^\d.]/g, '');
+    
+   
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts[1];
+    }
+    
+   
+    if (parts.length > 1) {
+        value = parseFloat(value).toFixed(2);
+    }
+    
+    input.value = value;
+}
+function enforceEnglishNumerals(event) {
+    
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 46) { 
+        if (event.target.value.includes('.')) {
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    }
+    if (charCode < 48 || charCode > 57) { 
+        event.preventDefault();
+        return false;
+    }
+    return true;
+}
+
+function formatPriceInput(input) {
+   
+    let value = input.value.replace(/[٠-٩]/g, d => d.charCodeAt(0) - '٠'.charCodeAt(0))
+                         .replace(/[۰-۹]/g, d => d.charCodeAt(0) - '۰'.charCodeAt(0));
+    
+    
+    value = value.replace(/[^\d.]/g, '');
+    
+    
+    const parts = value.split('.');
+    if (parts.length > 2) {
+        value = parts[0] + '.' + parts[1];
+    }
+    
+    
+    if (parts.length > 1) {
+        value = parseFloat(value).toFixed(2);
+    }
+    
+    input.value = value;
+}
+
+
+function loadCurrentPrices() {
+    fetch('http://localhost:3000/ticket-prices')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                data.prices.forEach(price => {
+                    const inputId = getInputIdForTicketType(price.type);
+                    if (inputId) {
+                        const input = document.getElementById(inputId);
+                        if (input) {
+                            
+                            input.value = parseFloat(price.price).toFixed(2);
+                        }
+                    }
+                });
+            }
+        })
+        .catch(error => console.error('Error loading prices:', error));
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const priceInputs = document.querySelectorAll('.price-input');
+    priceInputs.forEach(input => {
+      
+        input.setAttribute('dir', 'ltr');
+        input.setAttribute('lang', 'en');
+        
+      
+        input.addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+    });
+    
+    loadCurrentPrices();
+});
     </script>
 </body>
 </html>
