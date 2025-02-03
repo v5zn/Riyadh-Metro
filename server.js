@@ -81,7 +81,12 @@ app.post("/login", (req, res) => {
             res.status(200).json({
                 success: true,
                 message: "Login successful",
-                user: { id: user.id, username: user.username, email: user.email }
+                user: {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    password: user.password 
+                }
             });
         } else {
             res.status(401).json({ success: false, message: "Invalid credentials" });
@@ -138,7 +143,7 @@ app.post("/update", (req, res) => {
 app.post("/purchase-ticket", (req, res) => {
     const { userId, type } = req.body;
 
-    // Get current price from ticket_prices table
+    
     db.query("SELECT price FROM ticket_prices WHERE type = ?", [type], (err, results) => {
         if (err || results.length === 0) {
             return res.status(500).json({
@@ -320,20 +325,39 @@ app.get("/ticket-prices", (req, res) => {
         if (err) {
             console.error("Database error:", err);
             return res.json({
-                success: true,
-                prices: [
-                    { type: '2 Hours pass', price: 4.00, duration: '2 hours' },
-                    { type: '3 Days pass', price: 20.00, duration: '3 days' },
-                    { type: '7 Days pass', price: 40.00, duration: '7 days' },
-                    { type: '30 Days pass', price: 140.00, duration: '30 days' }
-                ]
+                success: false,
+                message: "Error fetching prices"
             });
         }
         
-        res.json({
-            success: true,
-            prices: results
-        });
+        if (results.length === 0) {
+           
+            const defaultPrices = [
+                ['2 Hours pass', 4.00, '2 hours'],
+                ['3 Days pass', 20.00, '3 days'],
+                ['7 Days pass', 40.00, '7 days'],
+                ['30 Days pass', 140.00, '30 days']
+            ];
+            
+            const insertQuery = "INSERT INTO ticket_prices (type, price, duration) VALUES ?";
+            db.query(insertQuery, [defaultPrices], (insertErr) => {
+                if (insertErr) {
+                    console.error("Error inserting default prices:", insertErr);
+                }
+                
+                res.json({
+                    success: true,
+                    prices: defaultPrices.map(([type, price, duration]) => ({
+                        type, price, duration
+                    }))
+                });
+            });
+        } else {
+            res.json({
+                success: true,
+                prices: results
+            });
+        }
     });
 });
 
@@ -463,6 +487,36 @@ app.delete('/delete-announcement/:id', (req, res) => {
                 message: 'Announcement deleted successfully'
             });
         });
+    });
+});
+
+app.post("/check-email", (req, res) => {
+    const { email } = req.body;
+    const query = "SELECT * FROM users WHERE email = ?";
+    
+    db.query(query, [email], (err, result) => {
+        if (err) {
+            return res.status(500).json({ 
+                success: false, 
+                message: "Error checking email"
+            });
+        }
+        
+        if (result.length > 0) {
+            
+            res.json({
+                success: true,
+                exists: true,
+                message: "Email found! Reset instructions have been sent."
+            });
+        } else {
+            
+            res.json({
+                success: true,
+                exists: false,
+                message: "Sorry, this email is not registered."
+            });
+        }
     });
 });
 
