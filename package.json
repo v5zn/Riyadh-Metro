@@ -7,3 +7,8 @@
     "qrcode": "^1.5.4"
   }
 }
+"jest": {
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coverageReporters": ["text", "lcov"]
+}
