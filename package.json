@@ -16,6 +16,6 @@
     "test": "jest",
     "lint": "eslint .",
     "e2e": "cypress run",
-    "performance-test": "lhci autorun"
+    "performance-test": "npx lhci autorun"
   }
 }
