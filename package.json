@@ -10,7 +10,7 @@
     "cypress": "^13.6.4",
     "eslint": "^9.3.0",
     "jest": "^29.7.0",
-    "lighthouse-ci": "^0.13.2"
+    "lighthouse-ci": "^1.13.1"
   },
   "scripts": {
     "test": "jest",
