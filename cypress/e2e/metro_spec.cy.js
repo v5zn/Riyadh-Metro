@@ -1,12 +1,33 @@
 describe('Riyadh Metro Website', () => {
-  it('loads the Ticket page', () => {
-    cy.visit('http://localhost:8000/tickets.html')
+
+  // Test 1: Home page loads
+  it('Loads the Home page', () => {
+    cy.visit('http://localhost:8080/index.html')
+    cy.title().should('include', 'Riyadh Metro')
+  })
+
+  // Test 2: Ticket page loads
+  it('Loads the Ticket page', () => {
+    cy.visit('http://localhost:8080/tickets.html')
     cy.contains('Tickets').should('exist')
   })
 
-  it('navigates to Contact page', () => {
-    cy.visit('http://localhost:8000/index.html')
+  // Test 3: Navigation to Contact page
+  it('Navigates to the Contact page from Home', () => {
+    cy.visit('http://localhost:8080/index.html')
     cy.get('a[href="contact.html"]').click()
     cy.url().should('include', '/contact.html')
+  })
+
+  // Test 4: Check that Plan Path button exists
+  it('Check that the Plan Path button exists on Home page', () => {
+    cy.visit('http://localhost:8080/index.html')
+    cy.get('#plan-path-btn').should('exist') // Update this selector to match your actual button id or class
+  })
+
+  // Test 5: Verify number of Metro Lines displayed
+  it('Checks the number of Metro lines displayed', () => {
+    cy.visit('http://localhost:8080/lines.html')
+    cy.get('.metro-line').should('have.length', 6) // Assuming each line uses a 'metro-line' class
   })
 })
