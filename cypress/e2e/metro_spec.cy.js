@@ -24,12 +24,11 @@ describe('Riyadh Metro Website', () => {
 })
   it('Displays different ticket types and prices', () => {
   cy.visit('http://localhost:8080/tickets.html')
-  cy.get('#prices').should('have.length.at.least', 1)
-  cy.get('#prices').each(($el) => {
-    expect($el.text()).to.match(/\d+(\.\d{2})? SAR/)
+  cy.get('.ticket p').should('have.length.at.least', 1)
+  cy.get('.ticket p').each(($el) => {
+    expect($el.text()).to.match(/^\d+(\.\d{2})? SAR$/)
   })
 })
-
 
   // Test 1: Home page loads
   it('Loads the Home page', () => {
