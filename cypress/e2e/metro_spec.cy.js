@@ -22,12 +22,12 @@ describe('Riyadh Metro Website', () => {
   // Test 4: Check that Plan Path button exists
   it('Check that the Plan Path button exists on Home page', () => {
     cy.visit('http://localhost:8080/index.html')
-    cy.get('#plan-path-btn').should('exist') // Update this selector to match your actual button id or class
+    cy.get('buttons2').should('exist') // Update this selector to match your actual button id or class
   })
 
   // Test 5: Verify number of Metro Lines displayed
   it('Checks the number of Metro lines displayed', () => {
-    cy.visit('http://localhost:8080/lines.html')
-    cy.get('.metro-line').should('have.length', 6) // Assuming each line uses a 'metro-line' class
+    cy.visit('http://localhost:8080/line.html')
+    cy.get('fas fa-train').should('have.length', 6) // Assuming each line uses a 'metro-line' class
   })
 })
