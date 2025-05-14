@@ -15,8 +15,8 @@ describe('Riyadh Metro Website', () => {
   // Test 3: Navigation to Contact page
   it('Navigates to the Contact page from Home', () => {
     cy.visit('http://localhost:8080/index.html')
-    cy.get('a[href="contact.html"]').click()
-    cy.url().should('include', '/contact.html')
+    cy.get('a[href="Contact.html"]').click()
+    cy.url().should('include', '/Contact.html')
   })
 
   // Test 4: Check that Plan Path button exists
