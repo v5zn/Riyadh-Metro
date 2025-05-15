@@ -24,6 +24,7 @@ describe('Riyadh Metro Website', () => {
 })
   it('Displays different ticket types and prices', () => {
   cy.visit('http://localhost:8080/tickets.html')
+  cy.contains('Single Ride') // debug: confirm page content
   cy.get('.ticket p').should('have.length.at.least', 1)
   cy.get('.ticket p').each(($el) => {
     expect($el.text()).to.match(/^\d+(\.\d{2})? SAR$/)
