@@ -17,5 +17,8 @@
     "lint": "eslint .",
     "e2e": "cypress run",
     "performance-test": "npx lhci autorun"
+    "start": "node server.js",
+    "test": "start-server-and-test start http://localhost:8080 cypress:run",
+    "cypress:run": "cypress run"
   }
 }
